@@ -1,0 +1,177 @@
+.global_panel_log{
+    width: 630px;
+    height: 450px;
+    position: absolute;
+    margin:auto;
+    left: 0;right: 0;
+    bottom: 0;top:0px;
+}
+.panel_log_users{
+    
+    display: flex;
+    flex-direction: row;
+}
+.modal-dialog{
+    height: 450px;
+    margin: 0;
+}
+.modal-content{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    
+}
+.modal-content1{
+    color: white;
+    width: 400px;
+    border-radius: 10px 0px 0px 10px;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+    background: linear-gradient(rgb(5, 22, 54) 30%,rgb(13, 92, 145)  90%)
+}
+.modal-content2{
+    color: white;
+    border-radius: 0px 10px 10px 0px;
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    background: linear-gradient(rgb(3, 42, 92) 30%,rgb(20, 102, 196) 90%)
+}
+.modal-content>div{
+    height: 100%;position: relative;
+}
+.formulario_login{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: block;
+    padding: 20px;
+    margin: 0px;
+    top:0;
+    box-sizing: border-box;
+}
+.formulario_login>div{
+    margin: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+}
+
+.formulario_login>div:nth-child(1)>span{
+    font-size: 27px;
+    font-weight: bold;
+    display: block;
+    margin: 0 auto;
+
+}
+.text_contenedor_login{
+    position: relative;
+}
+.text_contenedor_login,.text_contenedor_login>span,.text_contenedor_login>input{
+
+    /*with:100%; */
+    border-top: 0;border-left: 0;border-right: 0;
+    outline: none;
+    border-radius: 7px;
+}
+.text_contenedor_login>input{
+    font-size: 13px;
+    padding: 10px 10px 10px 30px;
+    
+}
+.text_contenedor_login>i{
+    color: black;
+    position: absolute;
+    top: 47px;
+    left: 6px;
+}
+.text_contenedor_login>input:focus{
+
+    box-shadow: 0px 0px 6px 1px rgb(0, 132, 255);;
+    border-radius: 5px
+}
+
+.text_contenedor_login>input:focus + i{
+    box-shadow: rgb(0, 132, 255);
+    color: rgb(0, 132, 255);
+    text-shadow: 
+        0 0 1px rgb(0, 132, 255),
+        0 0 4px rgba(0, 129, 250, 0.808),
+        0 0 20px rgba(0, 132, 255, 0.637);
+}
+.forget_pass{
+    position: relative;
+    width: 100%;
+    display: block;
+}
+.forget_pass>span{
+    float: right;
+}
+.forget_pass>span>a{font-size: 11px;}
+.button_session{
+    background: rgba(31, 0, 63, 0.897);
+    color: white;
+    font-weight: bold;
+    border-radius: 6px;
+    margin: 0px;
+    border: 0;
+    height: 39px;
+    width: 160px;
+    text-decoration: none;
+    outline: none!important;
+}
+.register_other{display: flex}
+.register_other>span{
+    font-size: 12px;
+    display: block;
+    margin: 0 auto;
+}
+.redes_sociales{
+    position: relative;
+    height: 60px;
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    
+}
+.redes_sociales>div{
+    height: 40px;
+    width: 40px;
+    margin: 0px 2px;
+    background: black;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid white;
+    transition: 0.3s
+}
+.redes_sociales>div:hover{
+    transform: scale(1.12)
+}
+.redes_sociales>div>a>i{
+    color:white;
+}
+.contenedor_password{
+   display: inline-flex;
+}
+.contenedor_password>div{
+    display: inline-flex;
+}
+ .contenedor_password>div>div{
+     margin: 0px 4px;
+ }
+ .contenedor_password>div>div>i{
+     top:36px;
+ }
+ .contenedor_password>div>div>input{
+    width: 157px;
+ }
+.login1:nth-child(1){
+    float: right;
+    background: red;
+}
