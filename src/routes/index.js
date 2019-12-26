@@ -33,6 +33,12 @@ router.post("/",(req,res)=>{
         res.render("templates/home",{error});
     }
 });
+router.get("/dashboard",(req,res)=>{
+  let linkcss = "/css/dashboard.css";
+  let linkjs = "/js/dashboard.js";
+  res.render("templates/dashboard",{linkcss,linkjs})  
+})
+
 router.get("/profile",function(req,res){
    console.log(req.session.myvariable);
    if(req.session.myvariable == "flavio"){

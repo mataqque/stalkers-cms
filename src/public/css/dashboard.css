@@ -1,0 +1,219 @@
+:root{
+    --colorwrapper:#2f3640;
+    --colorletra:
+    
+}
+body,html{
+    height:100%;
+    width: 100%;
+}
+.principal_container_page{
+    position: relative;
+    width: 100%;
+    height:100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.searchBox {
+    position: relative;
+    /* transform:  translate(-50%,50%); */
+    background: #2f3640;
+    width: 40px; 
+    height: 40px;
+    border-radius: 40px;
+    padding: 10px;
+    transition: 0.4s;
+}
+
+.searchBox:hover > .searchInput {
+    width: 80%;
+    padding: 0px 6px;
+    
+}
+.searchBox:hover{
+    width: 240px;
+    
+}
+.searchBox:hover > .searchButton {
+  background: white;
+  color : #2f3640;
+  left: 200px;
+  border-top: 2px solid rgb(107, 107, 107);
+  border-left: 2px solid rgb(107, 107, 107);
+  border-right: 2px solid white;
+  border-bottom: 2px solid white;
+  
+}
+
+.searchButton {
+    position: absolute;
+    margin: auto;
+    right: 0px;
+    left: 0px;
+    bottom:0;top:0;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    background: #2f3640;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s;
+    border-top: 2px solid white;
+    border-left: 2px solid white;
+    /* border: 2px solid blue */
+}
+
+.searchInput {
+    border:none;
+    position: absolute;
+    top:0;bottom: 0;
+    background: none;
+    outline: none;
+    float:left;
+    padding: 0px;
+    color: white;
+    font-size: 16px;
+    transition: 0.4s;
+    font-weight: bold;
+    width: 0px;
+}
+.searchButton>i{
+    font-size: 15px;
+}
+@media screen and (max-width: 620px) {
+.searchBox:hover > .searchInput {
+    width: 80%;
+    padding: 0 6px;
+    }
+}
+
+/* navbar_brad_position */
+.navbar_brad_position{
+    width:250px;
+}
+
+.contenedor_allpage{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+/* wrapper list */
+.secction_wrapper{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    justify-content: space-evenly; display: flex;
+    flex-direction: column;
+}
+li{
+    list-style: none;
+}
+.wrapper_main{
+    position: relative;
+    background: var(--colorwrapper);
+    height:100%;
+    width:210px;
+    justify-content: space-evenly;
+}
+.wrapper_main>div{
+   width: 100%;
+}
+.title_name{ 
+    color: white;
+    height: 40px;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+.wrapper_contain{
+    height: 100%;
+    justify-content: space-evenly; 
+}
+.wrapper_contain{
+    position: relative;width: 100%;padding: 0 ; margin:0;
+}
+.wrapper_contain>.wrapper_list{
+    position: relative;
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+    }
+.wrapper_contain>li>a{
+    position: relative;
+    /* cambiar el tamaño de <a> */
+    width: 100%;  
+    height: 40px;
+    padding: 10px 15px;
+    margin: 10px;
+    margin: 0px;
+    text-decoration: none;
+    color:rgba(190, 190, 190, 0.808);
+    font-size: 14px;
+    display: block;
+}
+.wrapper_contain>li>a>i:nth-child(3){
+    float: right;
+    position: relative;
+    top: 20%;
+}
+.wrapper_contain>li>a>i:nth-child(1){
+    position: relative;
+    padding:0px 6px
+}
+.open{
+    background: #202830f6!important;
+    border-left: 2px solid rgba(0, 204, 255, 0.856);
+}
+.wrapper_contain>li>a:hover{
+    color: rgb(241, 241, 241);
+    text-shadow: 
+    0 0 5px rgb(29, 165, 255),
+    0 0 15px rgb(29, 165, 255)
+}
+
+/* sublist_wrapper_main */
+
+.sublist_wrapper_main{
+    position: relative;
+    padding: 0%;
+    margin: 0;
+    width: 100%;
+    display: none;
+    /* height: 40px; */
+}
+.sublist_wrapper_child{
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    
+}
+.sublist_wrapper_child>a{
+    position: relative;
+    /* cambiar el tamaño de <a> */
+    width: 100%;  
+    height: 40px;
+    padding: 10px 15px;
+    margin: 10px;
+    margin: 0px;
+    text-decoration: none;
+    color:rgba(190, 190, 190, 0.808);
+    font-size: 14px;
+    display: block;
+}
+@media (max-width: 576px) { 
+    .navbar_brad_position{
+        width:100%
+    }
+ }
+.content_admin_page{
+    background: red;
+    border: 10px solid blue;
+    height: 100%;
+    width: 100%;
+}
