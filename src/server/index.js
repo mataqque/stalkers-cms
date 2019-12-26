@@ -6,14 +6,10 @@ const path = require("path");
 const exphbs = require("express-handlebars");
 const PORT = process.env.PORT||3000;
 const session  = require("express-session");
-// const helmet = require("helmet");
-// const config = require("./config");
-// const app = config(express());
 
 app.listen(app.get("port"),()=>{
     console.log(app.get("port"))
 });
-
 
 // settings
 app.set("views",path.join(__dirname,"../views"));
