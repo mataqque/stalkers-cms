@@ -81,11 +81,20 @@ router.get("/close",(req,res)=>{
   
 });
 
-
-
-
-router.get("/*sidemap*",(req,res)=>{
-  res.send("ingreso")
+router.get("/*sitemap*",(req,res)=>{
+    let idsitemap = [];
+    console.log(req.originalUrl.substr(1,this.length));
+    db.collection("sitemap").doc(req.originalUrl.substr(1,this.length))
+    .collection("subsitemap").get().then(snatshop=>{
+        snatshop.forEach(doc=>{
+            let array = (doc.data())
+            idsitemap.push({id:array.loc,lastmod:array.lastmod});
+        });
+        res.header('Content-Type', 'application/xml');
+        res.render("templates/sitemap",{layout:"subsitemap",idsitemap});
+    }).catch(erro=>{
+        console.log(erro.message);
+    });
 });
 
 router.use(function(req, res, next){
