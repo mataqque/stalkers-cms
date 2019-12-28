@@ -3,6 +3,9 @@
     --colorletra:
     
 }
+* a{
+    text-decoration: none!important;
+}
 body,html{
     height:100%;
     width: 100%;
@@ -15,81 +18,12 @@ body,html{
     flex-direction: column;
 }
 
-.searchBox {
-    position: relative;
-    /* transform:  translate(-50%,50%); */
-    background: #2f3640;
-    width: 40px; 
-    height: 40px;
-    border-radius: 40px;
-    padding: 10px;
-    transition: 0.4s;
-}
-
-.searchBox:hover > .searchInput {
-    width: 80%;
-    padding: 0px 6px;
-    
-}
-.searchBox:hover{
-    width: 240px;
-    
-}
-.searchBox:hover > .searchButton {
-  background: white;
-  color : #2f3640;
-  left: 200px;
-  border-top: 2px solid rgb(107, 107, 107);
-  border-left: 2px solid rgb(107, 107, 107);
-  border-right: 2px solid white;
-  border-bottom: 2px solid white;
-  
-}
-
-.searchButton {
-    position: absolute;
-    margin: auto;
-    right: 0px;
-    left: 0px;
-    bottom:0;top:0;
-    color: white;
-    width: 30px;
-    height: 30px;
-    border-radius: 100%;
-    background: #2f3640;
-    justify-content: center;
-    align-items: center;
-    transition: 0.4s;
-    border-top: 2px solid white;
-    border-left: 2px solid white;
-    /* border: 2px solid blue */
-}
-
-.searchInput {
-    border:none;
-    position: absolute;
-    top:0;bottom: 0;
-    background: none;
-    outline: none;
-    float:left;
-    padding: 0px;
-    color: white;
-    font-size: 16px;
-    transition: 0.4s;
-    font-weight: bold;
-    width: 0px;
-}
-.searchButton>i{
-    font-size: 15px;
-}
-@media screen and (max-width: 620px) {
-.searchBox:hover > .searchInput {
-    width: 80%;
-    padding: 0 6px;
-    }
-}
-
 /* navbar_brad_position */
+.navigation_navbar>nav{
+    padding-top: 0;
+    padding-bottom: 0;
+    background: #353b46!important;
+}
 .navbar_brad_position{
     width:250px;
 }
@@ -130,6 +64,11 @@ li{
     display: flex;
     align-items: center;
     padding: 10px;
+}
+
+.imagen_usuario{
+    height: 30px;
+    width: 30px
 }
 .wrapper_contain{
     height: 100%;
@@ -212,8 +151,40 @@ li{
     }
  }
 .content_admin_page{
-    background: red;
-    border: 10px solid blue;
     height: 100%;
     width: 100%;
 }
+.contenedor_admin_page{
+    height: 100%;
+    width: 100%;
+    overflow-y:scroll;
+}
+.contenedor_session{
+    /* height: 200px; */
+    width: 100%;
+}
+.contenedor_admin_page::-webkit-scrollbar {
+    width: 7px; 
+}
+.contenedor_admin_page::-webkit-scrollbar-thumb {
+    background:rgb(77, 77, 77);
+    border-radius: 4px;
+}
+.contenedor_admin_page::-webkit-scrollbar-track {
+    background: #b3b3b398;
+}
+
+.componente_dashboard{
+   border:1px solid rgba(102, 102, 102, 0.233);
+   border-radius:5px;
+   padding:10px;
+}
+.content_message_recivied{
+    height: 50px;
+    width:250px;
+    background: rgba(128, 128, 128, 0.356);
+    border: 1px solid rgba(0, 0, 0, 0.253);
+    border-radius:3px;
+}
+.message_recivied{width: 200px;}
+.message_recivied>p{font-size: 13px;}

@@ -1,17 +1,8 @@
-
 const router = require("express").Router();
-const admin = require("firebase-admin");
 const home = require("../controllers/home"); // controlador home
 const images = require("../controllers/image");// controlador images
-
-var serviceAccount = require("../../services/firebaseclave.json");
-
-const appAdmin =  admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
-    databaseURL: "https://prueba-a4587.firebaseio.com"
-  });
-
-var db = appAdmin.firestore();
+const path = require("path");
+const db = require("../../services/firebase");
 
 router.get("/",function(req,res){
   let linkcss = "/css/main.css"
@@ -33,6 +24,27 @@ router.post("/",(req,res)=>{
         res.render("templates/home",{error});
     }
 });
+router.get("/sitemap.xml",(req,res)=>{
+  var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+  console.log(fullUrl)
+  let idsitemap = [];
+  let datemof = [];
+  db.collection("sitemap").get().then(snapshot=>{
+    snapshot.forEach(doc=>{
+      idsitemap.push({id:req.protocol+'://'+req.get("host")+"/"+doc.id,datemof:doc.data()});
+     
+    });
+    console.log(idsitemap)
+    res.header('Content-Type', 'application/xml');
+    res.render("templates/sitemap",{layout:"site",idsitemap});
+  });
+});
+
+router.get("/main-sitemap.xsl",(req,res)=>{
+  res.header('Content-Type', 'application/xml');
+  res.sendFile(path.join(__dirname,"main-sitemap.xsl"));
+})
+
 router.get("/dashboard",(req,res)=>{
   let linkcss = "/css/dashboard.css";
   let linkjs = "/js/dashboard.js";

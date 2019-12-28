@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="http://localhost:3000/main-sitemap.xsl"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    {{#each idsitemap}}
+    <sitemap>
+		<loc>{{id}}</loc>
+		<lastmod>{{datemof.datemof}}</lastmod>
+	</sitemap>
+    {{/each}}
+</sitemapindex>

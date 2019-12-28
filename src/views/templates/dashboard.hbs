@@ -1,6 +1,6 @@
 <div class="principal_container_page">  
     <section class="navigation_navbar">
-    <nav class="navbar navbar-expand-sm navbar-light bg-light">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <div class="navbar_brad_position d-flex">
             <a class="navbar-brand" href="#">Andemendix</a>
             <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -13,13 +13,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="#">Link</a>
             </li>
-            <li class=" nav-item">
-                    <div class="searchBox">
-                            <input class="searchInput" type="text" name="" placeholder="Search">
-                            <button class="searchButton" href="#">
-                                <i class="fas fa-search"></i>
-                            </button>
-                    </div>
+            <li class=" nav-item d-flex">
+                <span class="nav-link"><a href="#">Hola, <strong>Flavio</strong></a></span>
+                <div class="imagen_usuario" class="pt-1"><img src="/img/dashboard/user.jpg" class="img-fluid" alt=""></div>
             </li>
         </ul>
         
@@ -60,7 +56,67 @@
     </div>
     </section>
     <section class="content_admin_page">
-        <div></div>
+        <div class="container contenedor_admin_page">
+            <div class="contenedor_session pt-2">
+                <h4>Escritorio</h4>
+                <div class="componente_dashboard d-flex flex-column">
+                    <div>
+                        <h5>Bienvenidos a Stalker</h5>
+                    </div>
+                    <div class="d-flex bd-highlight">
+                        <div class="flex-grow-1">
+                            <h6>Comienza</h6>
+                            <button class="btn btn-info btn-sm">Personaliza tu sitio</button>
+                        </div>
+                        <div class="flex-grow-1">
+                            <div class="d-flex flex-column ">
+                                <a href="#"><i class="fas fa-pen-alt"></i> Escribe una nueva página</a>
+                                <a href="#"><i class="fas fa-plus"></i> Añade una pagina</a>
+                                <a href="#"><i class="fas fa-eye"></i> Ver tu sitio</a>
+                            </div>
+                        </div>
+                        <div class="flex-grow-1">
+                            <div class="d-flex flex-column ">
+                                <a href="#"><i class="fas fa-comment-slash"></i> Desactiva los comentarios.</a>
+                                <a href="#"><i class="fab fa-elementor"></i> Gestiona los menus</a>
+                                <a href="#"><i class="fas fa-graduation-cap"></i> Aprende como comenzar</a>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="contenedor_session pt-2">
+                    <div class="componente_dashboard d-flex flex-column">
+                        <h6><strong>Actividad</strong></h6>
+                        <p>comentarios</p>
+                            <div class="d-flex bd-highlight">
+                                    <div class="content_message_recivied mr-2">
+                                            <div class="d-flex flex-row">
+                                                <div class="imagen_usuario">
+                                                    <img src="/img/dashboard/user.jpg" alt="" class="img-fluid">
+                                                </div>
+                                                <div>
+                                                    <div class="message_recivied">
+                                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </div>
+                                <div class="flex-grow-1">
+                                    <div class="d-flex flex-column ">
+                                        <a href="#"><i class="fas fa-comment-slash"></i> Desactiva los comentarios.</a>
+                                        <a href="#"><i class="fab fa-elementor"></i> Gestiona los menus</a>
+                                        <a href="#"><i class="fas fa-graduation-cap"></i> Aprende como comenzar</a>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+            </div>
+            
+            
+        </div>
     </section>
     </div>
 </div>

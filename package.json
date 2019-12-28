@@ -1,12 +1,13 @@
 {
-  "name": "red_social",
+  "name": "cms-seo",
   "version": "1.0.0",
   "description": "Red social",
   "main": "index.js",
   "scripts": {
     "start": "node src/server/index.js",
     "dev": "nodemon src/server/index.js",
-    "fire": "nodemon index.js"
+    "fire": "nodemon index1.js",
+    "site": "nodemon sitemap/site.js"
   },
   "author": "",
   "license": "MIT",
@@ -18,7 +19,9 @@
     "helmet": "^3.21.2",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
-    "socket.io": "^2.3.0"
+    "sitemap": "^5.1.0",
+    "socket.io": "^2.3.0",
+    "xml2js": "^0.4.23"
   },
   "devDependencies": {
     "nodemon": "^2.0.1"
