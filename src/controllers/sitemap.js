@@ -9,7 +9,6 @@ sitemap.linksitemap = function(req,res){
     db.collection("sitemap").get().then(snapshot=>{
       snapshot.forEach(doc=>{
         idsitemap.push({id:req.protocol+'://'+req.get("host")+"/"+doc.id,datemof:doc.data()});
-       
       });
       console.log(idsitemap)
       res.header('Content-Type', 'application/xml');
@@ -17,4 +16,8 @@ sitemap.linksitemap = function(req,res){
     });
   }
 
+  sitemap.DinamicRouteSitemap = function(req,res){
+        console.log(req.params.sitemap)
+        res.send("ingreso")
+  }
 module.exports = sitemap;

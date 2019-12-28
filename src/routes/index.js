@@ -27,6 +27,7 @@ router.post("/",(req,res)=>{
 });
 router.get("/sitemap.xml",sitemap.linksitemap);
 
+
 router.get("/main-sitemap.xsl",(req,res)=>{
   res.header('Content-Type', 'application/xml');
   res.sendFile(path.join(__dirname,"main-sitemap.xsl"));
@@ -77,7 +78,14 @@ router.get("/registrar",function(req,res){
 
 router.get("/close",(req,res)=>{
   delete req.session.myvariable;
-  res.send("eliminado")
+  
+});
+
+
+
+
+router.get("/*sidemap*",(req,res)=>{
+  res.send("ingreso")
 });
 
 router.use(function(req, res, next){
@@ -88,6 +96,5 @@ router.use(function(req, res, next){
     }
 
   });
-
 
 module.exports = router;

@@ -12,7 +12,7 @@ fs.readFile(path.join(__dirname,"../sitemap.xml"),"utf8",(err,data)=>{
     parseString(data,function(err,result){
         if(err) console.log(err);
         json = result;
-        console.log(json.urlset.url);
+        // console.log(json.urlset.url);
         res.send(json);
     });
     })
