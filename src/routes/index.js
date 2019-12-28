@@ -81,22 +81,21 @@ router.get("/close",(req,res)=>{
   
 });
 
-router.get("/*sitemap*",(req,res)=>{
+router.get("/*sitemap*xml",(req,res)=>{
     let idsitemap = [];
     console.log(req.originalUrl.substr(1,this.length));
     db.collection("sitemap").doc(req.originalUrl.substr(1,this.length))
     .collection("subsitemap").get().then(snatshop=>{
-        if(!snatshop.exists){
-            res.send("no existe perro")
-        }else{
-            snatshop.forEach(doc=>{
-                res.render('templates/404');
-                let array = (doc.data())
-                idsitemap.push({id:array.loc,lastmod:array.lastmod});
+      if(snatshop.empty){
+        res.render("templates/404");
+      }else{
+        snatshop.forEach(doc=>{
+              let array = (doc.data())
+              idsitemap.push({id:array.loc,lastmod:array.lastmod});
             });
-        }
-        res.header('Content-Type', 'application/xml');
-        res.render("templates/sitemap",{layout:"subsitemap",idsitemap});
+            res.header('Content-Type', 'application/xml');
+            res.render("templates/sitemap",{layout:"subsitemap",idsitemap}); 
+      }
     }).catch(erro=>{
         console.log(erro.message);
     });
@@ -104,8 +103,9 @@ router.get("/*sitemap*",(req,res)=>{
 
 router.use(function(req, res, next){
     res.status(404);
+    let linkcss = "css/404.css"
     if (req.accepts('html')) {
-      res.render('templates/404', { url: req.url });
+      res.render('templates/404', {linkcss});
       return;
     }
 

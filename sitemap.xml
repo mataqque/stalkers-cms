@@ -6,10 +6,10 @@ xmlns:xhtml="http://www.w3.org/1999/xhtml"
 xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
 xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
 <url>
-<loc>http://localhost:3000/articulos/</loc>
-<changefreq>daily</changefreq>
-<priority>0.3</priority>
-<lastmod>2018-10-15T12:42:20+02:00</lastmod>
+    <loc>http://localhost:3000/articulos/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.3</priority>
+    <lastmod>2018-10-15T12:42:20+02:00</lastmod>
 </url>
 <url>
 <loc>https://example.com/page-2/</loc>
