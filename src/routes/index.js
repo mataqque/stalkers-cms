@@ -86,10 +86,15 @@ router.get("/*sitemap*",(req,res)=>{
     console.log(req.originalUrl.substr(1,this.length));
     db.collection("sitemap").doc(req.originalUrl.substr(1,this.length))
     .collection("subsitemap").get().then(snatshop=>{
-        snatshop.forEach(doc=>{
-            let array = (doc.data())
-            idsitemap.push({id:array.loc,lastmod:array.lastmod});
-        });
+        if(!snatshop.exists){
+            res.send("no existe perro")
+        }else{
+            snatshop.forEach(doc=>{
+                res.render('templates/404');
+                let array = (doc.data())
+                idsitemap.push({id:array.loc,lastmod:array.lastmod});
+            });
+        }
         res.header('Content-Type', 'application/xml');
         res.render("templates/sitemap",{layout:"subsitemap",idsitemap});
     }).catch(erro=>{
