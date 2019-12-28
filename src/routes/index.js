@@ -3,6 +3,7 @@ const home = require("../controllers/home"); // controlador home
 const images = require("../controllers/image");// controlador images
 const path = require("path");
 const db = require("../../services/firebase");
+const sitemap = require("../controllers/sitemap");
 
 router.get("/",function(req,res){
   let linkcss = "/css/main.css"
@@ -24,21 +25,7 @@ router.post("/",(req,res)=>{
         res.render("templates/home",{error});
     }
 });
-router.get("/sitemap.xml",(req,res)=>{
-  var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
-  console.log(fullUrl)
-  let idsitemap = [];
-  let datemof = [];
-  db.collection("sitemap").get().then(snapshot=>{
-    snapshot.forEach(doc=>{
-      idsitemap.push({id:req.protocol+'://'+req.get("host")+"/"+doc.id,datemof:doc.data()});
-     
-    });
-    console.log(idsitemap)
-    res.header('Content-Type', 'application/xml');
-    res.render("templates/sitemap",{layout:"site",idsitemap});
-  });
-});
+router.get("/sitemap.xml",sitemap.linksitemap);
 
 router.get("/main-sitemap.xsl",(req,res)=>{
   res.header('Content-Type', 'application/xml');
