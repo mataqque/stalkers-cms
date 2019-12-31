@@ -37,7 +37,22 @@ router.get("/dashboard",(req,res)=>{
   let linkcss = "/css/dashboard.css";
   let linkjs = "/js/dashboard.js";
   res.render("templates/dashboard",{linkcss,linkjs})  
-})
+});
+
+router.get("/dashboardpagina",(req,res)=>{
+  res.sendFile(path.join(__dirname,"../views/templates/dashboardpagina.html"));  
+});
+
+router.post("/addpaginaweb",(req,res)=>{
+  console.log(req.body);
+  let data = {
+        content:req.body.texto,
+        fecha:new Date(),
+        titulo:req.body.titulo
+  }
+  db.collection("articulos").doc(req.body.titulo).set(data);
+  res.send("se guardo!")
+});
 
 router.get("/profile",function(req,res){
    console.log(req.session.myvariable);
@@ -48,12 +63,24 @@ router.get("/profile",function(req,res){
     }
 });
 
-router.get("/articulo/:autor?",confirmacion,(req,res)=>{
-    let nombrearticulo = "El mejor idioma";
-    let linkcss =  "/css/categoria.css";
-    let autorarticulo = req.params.autor;
-    console.log(req.params.autor)
-    res.render("templates/articulo",{nombrearticulo,autorarticulo,linkcss});
+router.get("/articulos/:articulo?",confirmacion,(req,res)=>{
+    console.log(req.params.articulo);
+    let elementoid = []
+    db.collection("articulos").where("url","==",req.params.articulo).get().then(snapshot => {
+        if (snapshot.empty) {
+          console.log('No matching documents.');
+          return;
+        }else{
+            snapshot.forEach(doc => {
+                console.log(doc.id, '=>', doc.data());
+                elementoid = doc.id
+            });
+            res.render("templates/articulo",{layout:"publicaciones"})
+        }
+      })
+      .catch(err => {
+        console.log('Error getting documents', err);
+      });
 });
 
 function confirmacion(req,res,next){
@@ -103,7 +130,7 @@ router.get("/*sitemap*xml",(req,res)=>{
 
 router.use(function(req, res, next){
     res.status(404);
-    let linkcss = "css/404.css"
+    let linkcss = "/css/404.css"
     if (req.accepts('html')) {
       res.render('templates/404', {linkcss});
       return;

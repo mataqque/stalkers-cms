@@ -1,0 +1,185 @@
+* a{text-decoration: none}
+* li{list-style: none;margin: 0;padding: 0}
+* ul{margin: 0;padding: 0}
+#navbar_contenido{
+    background: rgb(24, 23, 29)!important;
+    padding: 3px;
+}
+.stal{color:#f8b500;font-weight: bold;font-family: Arial, Helvetica, sans-serif}
+.ker{color:rgb(252, 252, 252);font-weight: bold;font-family: Arial, Helvetica, sans-serif}
+.nav-item>a{
+    transition: 0.3s;
+}
+.nav-item>a:hover{
+    color: #f8b500!important;
+}
+.contenedor_post_polulares{
+    /* border:2px solid black; */
+    height:400px;
+    display: flex;
+    /* justify-content: stretch */
+}
+.item1{
+    height:100%;
+    width: 50%;
+    /* margin-right: 10px; */
+}
+.item1>div{width:100%;height: 100%}
+.item1>div>img{width: 100%;height: 100%;object-fit: cover}
+.item2{
+    height: 100%;
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+}
+.subitem{
+    height: 100%;
+}
+.subitem>div{height: 100%;width: 100%;}
+.subitem>div>img{object-fit: cover;height: 100%;width: 100%;}
+
+
+/* comienza resposive*/
+@media (max-width:990px){
+    .contenedor_post_polulares{
+        display: grid;
+        grid-template-columns: 70% 30%;
+        grid-template-rows: 50% 50%;
+    }
+    .item1{
+        grid-column-start: 1;
+        width: 100%;
+    }
+    .item2:nth-child(2){
+        width: 100%;
+        grid-column: 2;
+        grid-row-start:1;
+        grid-row-end: 3;
+    }
+    .item2:nth-child(3){
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+    }
+    .subitem{
+        margin-right: 0px!important;
+        margin-left: 0px!important;
+        margin-bottom: 0px!important;
+    }
+}
+@media (max-width:768px){
+    .contenedor_post_polulares{
+        display: grid;
+        grid-template-columns: 50% 50%;
+        grid-template-rows: 35% 35% 35%;
+    }
+    .item1{
+        grid-column-start: 1;
+        grid-column-end: 3;
+        width: 100%;
+    }
+    .item2:nth-child(2){
+        width: 100%;
+        grid-column: 1;
+        grid-row-start:2;
+        grid-row-end: 4;
+    }
+    .item2:nth-child(3){
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        grid-column: 2;
+        grid-row-start:2;
+        grid-row-end: 4;
+    }
+    .subitem{
+        margin-right: 0px!important;
+        margin-left: 0px!important;
+        margin-bottom: 0px!important;
+    }
+}
+@media (max-width:575px){
+
+    .contenedor_post_polulares{
+        display: block;
+        height: auto;
+    }
+    #navbar_contenido{
+        padding-left: 15px!important;
+        padding-right: 15px!important;
+        position: fixed;
+        width: 100%;
+        z-index: 99999;
+        
+    }
+    .navbar-brand{
+        position: absolute;
+        top:0;
+        left: 40%;
+    }
+}
+@keyframes example {
+    from {top: -47px;}
+    to {top: 0px;}
+  }
+
+
+/* termina responsive */
+.title{
+    color: white;
+    font-family:"Encode Sans Expanded","sans serif";
+    font-weight: bold!important;
+    margin:0!important;
+    padding-right: 4px;
+    /* -webkit-text-stroke: 0.5px rgb(145, 83, 3); */
+}
+.card-img-overlay{
+    background: linear-gradient(rgba(0, 0, 0, 0.24),rgba(0, 0, 0, 0.534))
+}
+.position_footer{
+    position: absolute;
+    bottom: 10px;
+    /* background: red */
+}
+.caracteristica{color:white!important}
+.icon-cont{color: #f8b500!important;}
+.p-title {
+    position: relative;
+    padding-bottom: 20px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.288)
+}
+.p-title:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 80px;
+    height: 5px;
+    background: #F9B500;
+    z-index: 20;
+}
+.elemento_post{
+    width:100%;
+    height:110px;
+    /* border: 1px solid black */
+}
+.imagen_post{
+    width: 30%;
+    height: 100%;
+    margin-right: 10px;
+}
+.imagen_post>img{
+    width: 100%;
+    height: 100%;object-fit: cover!important;
+    
+}
+.contendor_info_post{
+    width: 70%;
+    height: 100%;
+}
+.footer{
+    width:100%;
+    height:200px;
+    background: rgb(22, 22, 22);
+}
