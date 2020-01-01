@@ -1,0 +1,154 @@
+
+<nav id="navbar_contenido" class="navbar navbar-expand-sm navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#"><span class="stal">Stal</span><span class="ker">ker</span></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+              
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                      <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                    </li>
+                  </ul>
+                </div>
+            </div>
+</nav>
+<section>
+    <div class="container pt-5">
+        <div class="contenedor_post_polulares">
+          <div class="item1">
+            <div class="card">
+                <img src="/img/home/mundo-2020.svg" alt="">
+                <div class="card-img-overlay">
+                        <div class="position_footer">
+                            <h2 class="title h6">Niño acaba de ganar 1 millon de dolares mientras dormia</h2>
+                            <span class="caracteristica"><span>Jun 08 2019 </span><i class="icon-cont fas fa-eye ml-3"></i> 12<i class="icon-cont fas fa-comments ml-3"></i> 3000</span>
+                        </div>   
+                      </div>
+            </div>
+          </div>
+          <div class="item2">
+            <div class="subitem">
+                <div class="card"><img src="/img/home/carrucel3.svg" alt="">
+                  <div class="card-img-overlay">
+                    <div class="position_footer">
+                        <h2 class="title h6">Niño acaba de ganar 1 millon de dolares mientras dormia</h2>
+                        <span class="caracteristica"><span>Jun 08 2019 </span><i class="icon-cont fas fa-eye ml-3"></i> 12<i class="icon-cont fas fa-comments ml-3"></i> 3000</span>
+                    </div>   
+                  </div>
+                </div>
+            </div>
+            <div class="subitem">
+                <div class="card"><img src="/img/home/carrucel2.svg" alt="">
+                  <div class="card-img-overlay">
+                    <div class="position_footer">
+                        <h2 class="title h6">Niño acaba de ganar 1 millon de dolares mientras dormia</h2>
+                        <span class="caracteristica"><span>Jun 08 2019 </span><i class="icon-cont fas fa-eye ml-3"></i> 12<i class="icon-cont fas fa-comments ml-3"></i> 3000</span>
+                    </div>   
+                  </div>
+                </div>
+            </div>
+            
+          </div>
+          <div class="item2">
+            <div class="subitem">
+                <div class="card"><img src="/img/home/relacionados1.svg" alt="">
+                  <div class="card-img-overlay">
+                    <div class="position_footer">
+                        <h2 class="title h6">Niño acaba de ganar 1 millon de dolares mientras dormia</h2>
+                        <span class="caracteristica"><span>Jun 08 2019 </span><i class="icon-cont fas fa-eye ml-3"></i> 12<i class="icon-cont fas fa-comments ml-3"></i> 3000</span>
+                    </div>   
+                  </div>
+                </div>
+            </div>
+            <div class="subitem">
+                <div class="card"><img src="/img/home/carrucel1.svg" alt="">
+                  <div class="card-img-overlay">
+                    <div class="position_footer">
+                        <h2 class="title h6">Niño acaba de ganar 1 millon de dolares mientras dormia</h2>
+                        <span class="caracteristica"><span>Jun 08 2019 </span><i class="icon-cont fas fa-eye ml-3"></i> 12<i class="icon-cont fas fa-comments ml-3"></i> 3000</span>
+                    </div>   
+                  </div>
+                </div>
+            </div>
+            
+          </div>
+          
+        </div>
+    </div>
+</section>
+<section class="post_recientes container pt-5">
+    <div class="row">
+        <div class="col-lg-8">
+        <h3 class="p-title">POST RECIENTES</h3>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3"><img src="/img/home/bitcoin.jpg" class="img-fluid" alt=""></div>
+                <h4>El valor del bitcoin aumenta</h4>
+                <span class=""><span>Jun 08 2019 </span><i class="icon-cont fas fa-eye ml-3"></i> 12<i class="icon-cont fas fa-comments ml-3"></i> 3000</span>
+                <p class="pt-4">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa officiis eius voluptates adipisci facere? Laudantium laborum, odit illo veritatis quaerat expedita, quod eveniet quae facilis id officia unde quidem adipisci?
+                </p>
+            </div>
+            <div class="col-md-6">
+                <ul>
+                  {{#each data}}
+                    <li class="mb-2"><div class="elemento_post d-flex flex-row">
+                        <div class="imagen_post"><img src="/img/home/bitcoin1.jpg" class="img-fluid" alt=""></div>
+                        <div class="contendor_info_post">
+                            <h4 class="h5 ">{{titulo}}</h4>
+                            <span class=""><span>{{fecha}}</span><i class="icon-cont fas fa-eye ml-3"></i> 12<i class="icon-cont fas fa-comments ml-3"></i> 3000</span>
+                        </div>
+                        </div>
+                    </li>
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
+        </div>
+        <div class="col-lg-4">
+                <h3 class="p-title">POST POPULARES</h3>
+        </div>
+    </div>
+</section>
+<footer class="footer">
+    <div class="container pt-2">
+        <h5 class="h2"><span class="stal">Stal</span><span class="ker">ker</span></h5>
+        <div class="content-footer  row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4"></div>
+        </div>
+    </div>
+</footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="./bootstrap/js/bootstrap.js"></script>
+    <script>
+    $(document).on("scroll",function(){
+      var desplazamientoActual = $(document).scrollTop();
+      if(desplazamientoActual>37){
+        document.getElementById("navbar_contenido").style = `
+        padding-left: 15px!important;
+        padding-right: 15px!important;
+        position: fixed;
+        width: 100%;
+        z-index: 99999;
+        transition: 1s;
+        transition: 1s;
+        animation: example 2s;
+        `
+      }else if(desplazamientoActual<37){
+        document.getElementById("navbar_contenido").style = ""
+      }
+      console.log(desplazamientoActual)
+    });
+    </script>

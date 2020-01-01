@@ -153,24 +153,27 @@ li{
 .content_admin_page{
     height: 100%;
     width: 100%;
+    display:block; 
+    overflow-y:scroll;
 }
 .contenedor_admin_page{
     height: 100%;
-    width: 100%;
-    overflow-y:scroll;
+    padding: 15px;
+    width: 100% !important;
+    margin:0!important;
 }
 .contenedor_session{
     /* height: 200px; */
     width: 100%;
 }
-.contenedor_admin_page::-webkit-scrollbar {
+.content_admin_page::-webkit-scrollbar {
     width: 7px; 
 }
-.contenedor_admin_page::-webkit-scrollbar-thumb {
+.content_admin_page::-webkit-scrollbar-thumb {
     background:rgb(77, 77, 77);
     border-radius: 4px;
 }
-.contenedor_admin_page::-webkit-scrollbar-track {
+.content_admin_page::-webkit-scrollbar-track {
     background: #b3b3b398;
 }
 

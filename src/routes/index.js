@@ -5,14 +5,23 @@ const path = require("path");
 const db = require("../../services/firebase");
 const sitemap = require("../controllers/sitemap");
 
+
 router.get("/",function(req,res){
-  let linkcss = "/css/main.css"
-    if(!req.session.myvariable){
-      res.render('templates/home',{linkcss});
-      }else if(req.session.myvariable){
-        res.redirect("/profile");
-      };
-    });
+  let date = new Date();
+  let data = [];
+      db.collection("articulos").where("fecha","<",date).orderBy("fecha","desc").limit(3).get()
+      .then((snapshot=>{
+        if(snapshot.empty){
+          console.log("documeto no encontrado");
+        }else{
+          snapshot.forEach(doc=>{
+            let savedata = doc.data();
+            data.push({titulo:savedata.titulo,fecha:savedata.fecha.toDate().toLocaleDateString("es-Es")});
+          })
+          res.render("templates/homepage",{layout:"homepage",data});
+        }
+        })
+      )});
 
 
 router.post("/",(req,res)=>{
@@ -44,11 +53,16 @@ router.get("/dashboardpagina",(req,res)=>{
 });
 
 router.post("/addpaginaweb",(req,res)=>{
+  function remplazar(){
+      let palabra = req.body.titulo.replace(" ","-");
+      return palabra;
+  }
   console.log(req.body);
   let data = {
         content:req.body.texto,
         fecha:new Date(),
-        titulo:req.body.titulo
+        titulo:req.body.titulo,
+        url:remplazar()
   }
   db.collection("articulos").doc(req.body.titulo).set(data);
   res.send("se guardo!")

@@ -21,7 +21,7 @@ app.engine('hbs',exphbs({
     extname: ".hbs",
     helpers:require("./helpers")
     }));
-
+ 
 app.use(express.static(path.join(__dirname,"../public")));
 app.use(express.urlencoded({extended:true}));
 app.use(session({
