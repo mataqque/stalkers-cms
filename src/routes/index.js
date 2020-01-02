@@ -16,13 +16,22 @@ router.get("/",function(req,res){
         }else{
           snapshot.forEach(doc=>{
             let savedata = doc.data();
-            data.push({titulo:savedata.titulo,fecha:savedata.fecha.toDate().toLocaleDateString("es-Es")});
+            data.push({
+              titulo:savedata.titulo,
+              fecha:savedata.fecha.toDate().toLocaleDateString("es-Es"),
+              url:savedata.categoria+"/"+savedata.url,
+              articulo:savedata.content.substr(0,80),
+              cantcomentarios:savedata.cantcomentarios,
+              cantlike:savedata.cantlike
+            });
           })
           res.render("templates/homepage",{layout:"homepage",data});
         }
         })
       )});
-
+router.get("/tablero",(req,res)=>{
+  res.render("templates/tablero",{layout:"publicaciones"});
+})
 
 router.post("/",(req,res)=>{
     console.log(req.body)
