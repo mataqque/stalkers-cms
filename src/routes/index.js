@@ -30,7 +30,8 @@ router.get("/",function(req,res){
         })
       )});
 router.get("/tablero",(req,res)=>{
-  res.render("templates/tablero",{layout:"publicaciones"});
+  // res.sendFile(path.join(__dirname,"../views/templates/tablero.html"))
+  res.render("templates/tablero",{layout:"publicaciones"})
 })
 
 router.post("/",(req,res)=>{

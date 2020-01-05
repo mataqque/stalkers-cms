@@ -1,9 +1,35 @@
-    <div class="contenedor_session pt-2">
-        <h4>Paginas</h4>
-        <div class="componente_dashboard">
-            <h6>Título</h6> <input type="text" class="input" id="titulopagina">
-            <h6>Texto</h6> <textarea name="" id="textopagina" cols="30" rows="10" id="textopagina"></textarea>
-            <p id="mensaje"></p>
-            <button class="btn btn-info" id="agregarpagina" onclick="addpaginaweb()">agregar <i class="fas fa-plus"></i></button>
-        </div>
+<div class="componente_dashboard ">
+
+<h5 class="pb-2">Título</h5>
+<input type="text" id="texto_titulo">
+<h5 class="pb-2">Artículo</h5>
+<div class="tablero">
+    <div class="header">
+        <div class="container">
+        <button onclick="formatDoc('bold');"><i class="fas fa-file-code"></i></button>
+        <li class="barra"></li>
+        <button onclick="formatDoc('bold');" title="Bold"><i class="fas fa-bold"></i></button>
+        <li class="barra"></li>
+        <button onclick="formatDoc('underline');"><i class="fas fa-underline"></i></button>
+        <li class="barra"></li>
+        <button  class="open" onclick="new llamada(['h1','h2','h3','h4','h5','h6','pre','p'],this)">
+            <i class="fas fa-text-height"></i>
+            <div class="mostrarselect" style="display: block">         
+            </div></button>
+        <li class="barra"></li>
+        <button onclick="formatDoc('formatblock','h1');">A</button>
+        <button  class="open" onclick="new llamada(['justifycenter','justifyleft','justifyright'],this)"><i class="fas fa-align-justify"></i>
+            <div class="mostrarselect" style="display: block">         
+                </div></button>
+        <button id="enlace" onclick="var sLnk=prompt('Write the URL here','http:\/\/');if(sLnk&&sLnk!=''&&sLnk!='http://'){formatDoc('createlink',sLnk)}"><i class="fas fa-link"></i>
+        </button>
+        <button onclick="formatDoc('bold');"><i class="fas fa-image"></i></button>
+        <button onclick="formatDoc('bold');"><i class="fas fa-photo-video"></i></button>
     </div>
+    </div>
+    <div class="contenido_html" contenteditable="true" id="textbox" aria-disabled="false" tabindex="-1" spellcheck="true" >
+        <p>﻿</p>
+    </div>
+</div>
+
+</div>
