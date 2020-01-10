@@ -6,16 +6,31 @@ const path = require("path");
 const exphbs = require("express-handlebars");
 const PORT = process.env.PORT||3000;
 const session  = require("express-session");
-
+const servicesFire = require("../../services/firebase");
+const passport = require("passport");
+const mongoose = require("mongoose");
+const flash = require("connect-flash");
+require("../passport/local-auth")(passport);
 app.listen(app.get("port"),()=>{
     console.log(app.get("port"))
 });
-
+const db = require('../config/key.js').mongoURI;
+mongoose.connect(db,{ useNewUrlParser: true })
+  .then(() => console.log('MongoDB Connected'))
+  .catch(err => console.log(err));
 // settings
+app.use(flash());
+app.use(session({
+    secret:"MySecret",
+    resave:true,
+    saveUninitialized:true
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 app.set("views",path.join(__dirname,"../views"));
 app.set('view engine', 'hbs');
 app.engine('hbs',exphbs({
-    defaultLayout: "main",
+    defaultLayout: "main", 
     partialsDir:path.join(app.get("views"),"partials"),
     layoutDir: path.join(app.get("views"),"layouts"),
     extname: ".hbs",
@@ -30,7 +45,7 @@ app.use(session({
     secret:"Hola mundo"
 }));
 
-app.use(require("../routes"));
+app.use("/",require("../routes/index.js"));
 
 app.set("port",PORT);
 app.listen(app.get("port"),function(){

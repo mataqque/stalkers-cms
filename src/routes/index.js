@@ -2,9 +2,10 @@ const router = require("express").Router();
 const home = require("../controllers/home"); // controlador home
 const images = require("../controllers/image");// controlador images
 const path = require("path");
-const db = require("../../services/firebase");
+const servicesFire = require("../../services/firebase");
+const db = servicesFire.db;
 const sitemap = require("../controllers/sitemap");
-
+const passport = require('passport');
 
 router.get("/",function(req,res){
   let date = new Date();
@@ -29,6 +30,17 @@ router.get("/",function(req,res){
         }
         })
       )});
+
+router.get("/login",(req,res)=>{
+    res.render("templates/login");
+})
+router.post("/login",(req,res,next)=>{
+    passport.authenticate("local",{
+        successRedirect:"/dashboard",
+        failureRedirect:"/login",
+        failureFlash: true
+    })(req,res,next);
+})
 router.get("/tablero",(req,res)=>{
   // res.sendFile(path.join(__dirname,"../views/templates/tablero.html"))
   res.render("templates/tablero",{layout:"publicaciones"})

@@ -44,6 +44,15 @@ function addpaginaweb(){
         success:function(event){
             mensaje.textContent = event;
             init_page();
+            document.getElementsByClassName("contenido_html")[0].addEventListener("keydown",function(event){
+                let cantidad = contenedor[0].innerHTML.indexOf("<p>");
+                let etiquetap = contenedor[0].innerHTML.substr(cantidad,3);
+                if(etiquetap !== "<p>"){
+                let elemento = document.createElement("p");
+                elemento.textContent = "﻿";
+                document.getElementsByClassName("contenido_html")[0].appendChild(elemento)
+            }
+        });
         }
     });
 }
@@ -71,19 +80,20 @@ function init_page(){
 }
 
     class llamada{
-        constructor(valores,contenElement){
+        constructor(valores,contenElement,type){
             this.valorf = true;
             this.valores = valores;
             this.contenElement = contenElement;
+            this.type = type;
             this.mostrar();
         }
         mostrar(){
             if(this.valorf == true && !this.contenElement.children[1].children[0]){
-                console.log("funciona")
                 for(let i=0;i<this.valores.length;i++){
-                let elemento = document.createElement("div");
+                let elemento = document.createElement("button");
                 elemento.textContent = this.valores[i];
                 elemento.className = "valor"+i;
+                elemento.setAttribute("onclick",`enviarthis("${this.type}",this)`);
                 this.contenElement.children[1].appendChild(elemento);
                 }
                 this.valorf = false;
@@ -98,33 +108,29 @@ function init_page(){
         }
     }
 
-    mostrar[0].addEventListener("click",function(event){
-        formatDoc("formatblock",event.path[0].textContent)
-        });
-    mostrar[1].addEventListener("click",function(event){
-    formatDoc(event.path[0].textContent)
-    });
+    function enviarthis(type,value){
+            	if(type=="undefined"){
+                    document.execCommand(value.textContent,false); $("#textbox").focus();
+                }else{
+                    document.execCommand(type, false, value.textContent); $("#textbox").focus();
+                }
+    }
 
     function insertar_enlace(){
         document.getElementById("texto_enlace").value;
         formatDoc("createlink",document.getElementById("texto_enlace").value)
     }
 
-document.getElementsByClassName("contenido_html")[0].addEventListener("keydown",function(event){
-    let cantidad = contenedor[0].innerHTML.indexOf("<p>");
-    let etiquetap = contenedor[0].innerHTML.substr(cantidad,3);
-    if(etiquetap !== "<p>"){
-        let elemento = document.createElement("p");
-        elemento.textContent = "﻿";
-        document.getElementsByClassName("contenido_html")[0].appendChild(elemento)
-    }
-});
-// prueba para cargar imagen en el contenedor
-$("#probando").click(function(){
-formatDoc("insertimage","https://www.tekcrispy.com/wp-content/uploads/2019/09/cube-1963036_960_720.jpg")
-});
-    function formatDoc(sCmd, sValue) {
+    
+// prueba para cargar imagen en el contenedor   
+    $("#probando").click(function(){
+        formatDoc("insertimage","https://www.tekcrispy.com/wp-content/uploads/2019/09/cube-1963036_960_720.jpg")
+    });
+function formatDoc(sCmd, sValue) {
         console.log(sValue)
         console.log(sCmd)
         document.execCommand(sCmd, false, sValue); $("#textbox").focus();
+    }
+    function open_galery(){
+        
     }

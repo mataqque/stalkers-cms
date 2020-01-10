@@ -106,7 +106,7 @@ li{
     padding:0px 6px
 }
 .open{
-    background: #F0F0F0!important;
+    background: #353b46;
     border-left: 2px solid rgba(0, 204, 255, 0.856);
 }
 .wrapper_contain>li>a:hover{
@@ -261,13 +261,6 @@ li{
     width: 1px;
     background: rgb(209, 209, 209);
 }
-/* .select{
-    display: block;
-    position: absolute;
-}
-.select::-ms-expand {
-	display: none;
-} */
 .mostrarselect{
     height: auto;
     display: flex;
@@ -280,12 +273,17 @@ li{
     width: auto;
     box-sizing: border-box;
 }
-.mostrarselect>div:hover{   
+.mostrarselect>button{
+    color: white;
+}
+.mostrarselect>button:hover{   
     color:black;
     background: white;
+    width: 100%;
 }
-.mostrarselect>div{
+.mostrarselect>button{
     padding: 5px 10px;
+    width: 100%;
 }
 
 #texto_titulo{
