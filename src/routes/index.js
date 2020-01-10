@@ -6,6 +6,7 @@ const servicesFire = require("../../services/firebase");
 const db = servicesFire.db;
 const sitemap = require("../controllers/sitemap");
 const passport = require('passport');
+const {ensureAuthenticated,forwardAuthenticated} = require("../passport/auth");
 
 router.get("/",function(req,res){
   let date = new Date();
@@ -31,7 +32,7 @@ router.get("/",function(req,res){
         })
       )});
 
-router.get("/login",(req,res)=>{
+router.get("/login",forwardAuthenticated,(req,res)=>{
     res.render("templates/login");
 })
 router.post("/login",(req,res,next)=>{
@@ -64,7 +65,7 @@ router.get("/main-sitemap.xsl",(req,res)=>{
   res.sendFile(path.join(__dirname,"main-sitemap.xsl"));
 })
 
-router.get("/dashboard",(req,res)=>{
+router.get("/dashboard",ensureAuthenticated,(req,res)=>{
   let linkcss = "/css/dashboard.css";
   let linkjs = "/js/dashboard.js";
   res.render("templates/dashboard",{linkcss,linkjs})  
