@@ -33,7 +33,7 @@ router.get("/",function(req,res){
       )});
 
 router.get("/login",forwardAuthenticated,(req,res)=>{
-    res.render("templates/login");
+    res.render("templates/login",{layout:"login"});
 })
 router.post("/login",(req,res,next)=>{
     passport.authenticate("local",{
@@ -66,9 +66,7 @@ router.get("/main-sitemap.xsl",(req,res)=>{
 })
 
 router.get("/dashboard",ensureAuthenticated,(req,res)=>{
-  let linkcss = "/css/dashboard.css";
-  let linkjs = "/js/dashboard.js";
-  res.render("templates/dashboard",{linkcss,linkjs})  
+  res.render("templates/dashboard",{layout:"dashboard"})  
 });
 
 router.get("/dashboardpagina",(req,res)=>{
@@ -101,18 +99,25 @@ router.get("/profile",function(req,res){
 });
 
 router.get("/articulos/:articulo?",confirmacion,(req,res)=>{
-    console.log(req.params.articulo);
-    let elementoid = []
+    let data = [];
     db.collection("articulos").where("url","==",req.params.articulo).get().then(snapshot => {
         if (snapshot.empty) {
           console.log('No matching documents.');
           return;
         }else{
             snapshot.forEach(doc => {
-                console.log(doc.id, '=>', doc.data());
-                elementoid = doc.id
+                let savedata = doc.data();
+                data.push({
+                  titulo:savedata.titulo,
+                  fecha:savedata.fecha.toDate().toLocaleDateString("es-Es"),
+                  url:savedata.categoria+"/"+savedata.url,
+                  articulo:savedata.content,
+                  cantcomentarios:savedata.cantcomentarios,
+                  cantlike:savedata.cantlike
+                })
             });
-            res.render("templates/articulo",{layout:"publicaciones"})
+            console.log(data.articulo)
+            res.render("templates/articulo",{layout:"publicaciones",data})
         }
       })
       .catch(err => {

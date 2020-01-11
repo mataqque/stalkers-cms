@@ -292,3 +292,7 @@ li{
     border: 1px solid gray;
 }
 #texto_titulo:focus{outline: 0;}
+#titulo_pagina{
+    padding: 10px;
+    font-size: 25px;
+}

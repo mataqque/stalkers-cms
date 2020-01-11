@@ -1,4 +1,4 @@
-const db = require("../../services/firebase");
+const {db} = require("../../services/firebase");
 const sitemap = {};
 
 sitemap.linksitemap = function(req,res){

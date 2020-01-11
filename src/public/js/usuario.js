@@ -7,4 +7,4 @@ $("#logout").click(function(){
             // console.log(valor)
         }
     });
-})
+});

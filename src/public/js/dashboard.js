@@ -1,5 +1,9 @@
+$(document).ready(function(){
+    $("#login").click(function(){
+         $("#mymodal").modal("show");
+    })
+});
 $(function(){
-
     var Accordeon = function(el,multiple){
         this.el = el || {};
         this.multiple = multiple || false;
@@ -21,38 +25,26 @@ $(function(){
     var acordeon = new Accordeon($(".wrapper_contain"),false)
 });
 
-$("#pagina").click(function(){
-    let contenedor = document.getElementsByClassName("contenedor_admin_page")[0];
-    console.log("ingreso")
-    $.ajax({
-        url:"/dashboardpagina",
-        method:"GET",
-        success:function(event){
-            contenedor.innerHTML = event;
-        }
-    })
-});
-
 function addpaginaweb(){
-    let titulopagina = document.getElementById("titulopagina");
-    let textopagina = document.getElementById("textopagina");
-    let mensaje = document.getElementById("mensaje");
+    let titulopagina = document.getElementById("titulo_pagina");
+    let textopagina = document.getElementsByClassName("jodit_wysiwyg")[0];
+    // let mensaje = document.getElementById("mensaje");
     $.ajax({
         url:"/addpaginaweb",
         method:"POST",
-        data:{titulo:titulopagina.value,texto:textopagina.value},
+        data:{titulo:titulopagina.value,texto:textopagina.innerHTML},
         success:function(event){
-            mensaje.textContent = event;
-            init_page();
-            document.getElementsByClassName("contenido_html")[0].addEventListener("keydown",function(event){
-                let cantidad = contenedor[0].innerHTML.indexOf("<p>");
-                let etiquetap = contenedor[0].innerHTML.substr(cantidad,3);
-                if(etiquetap !== "<p>"){
-                let elemento = document.createElement("p");
-                elemento.textContent = "﻿";
-                document.getElementsByClassName("contenido_html")[0].appendChild(elemento)
-            }
-        });
+            alert(event);
+            // init_page();
+        //     document.getElementsByClassName("contenido_html")[0].addEventListener("keydown",function(event){
+        //         let cantidad = contenedor[0].innerHTML.indexOf("<p>");
+        //         let etiquetap = contenedor[0].innerHTML.substr(cantidad,3);
+        //         if(etiquetap !== "<p>"){
+        //         let elemento = document.createElement("p");
+        //         elemento.textContent = "﻿";
+        //         document.getElementsByClassName("contenido_html")[0].appendChild(elemento)
+        //     }
+        // });
         }
     });
 }

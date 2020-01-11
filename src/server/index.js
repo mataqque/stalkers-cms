@@ -10,12 +10,13 @@ const servicesFire = require("../../services/firebase");
 const passport = require("passport");
 const mongoose = require("mongoose");
 const flash = require("connect-flash");
+
 require("../passport/local-auth")(passport);
 app.listen(app.get("port"),()=>{
     console.log(app.get("port"))
 });
-const db = require('../config/key.js').mongoURI;
-mongoose.connect(db,{ useNewUrlParser: true })
+const database = require('../config/key.js').mongoURI;
+mongoose.connect(database,{ useNewUrlParser: true })
   .then(() => console.log('MongoDB Connected'))
   .catch(err => console.log(err));
 // settings
@@ -45,7 +46,8 @@ app.use(session({
     secret:"Hola mundo"
 }));
 
-app.use("/",require("../routes/index.js"));
+app.use("/dashboard",require("../routes/dashboard"));
+app.use("/",require("../routes/index"));
 
 app.set("port",PORT);
 app.listen(app.get("port"),function(){
