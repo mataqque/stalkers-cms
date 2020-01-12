@@ -1,13 +1,27 @@
 {{>navhomepage}}
+
 <div class="container ajust">
 <div class="row">
-    <div class="col-sm-8">
+    <div class="col-sm-8 pb-4">
         <div class="row">
             <div class="col-md-12">
+            <div class="breadcrumbs"><span><a href="/">Portada</a> » <a href="/categoria">Categoria</a> » <a href="/articulo">Articulo</a></span></div>
                {{#each data}}
                 <div>
+                    <h1 class="m-0">{{titulo}}</h1>
+                    <div class="metas pb-2 pt-1">
+                        <span class="meta author">
+                            <a href="https://mejorconsalud.com/author/carmen-martin/" class=""><span>Autor: </span><strong>Flavio Mataqque</strong> </a>
+                        </span>
+                        <span class="meta date"><i class="far fa-calendar"></i> 11 enero, 2020</span>
+                        <span class="meta date"><i class="icon-cont fas fa-eye ml-3"></i> 12 <i class="icon-cont fas fa-comments ml-3"></i> 3000</span>
+                    </div>
+                    <div class="content_articulo_post">
                     {{{articulo}}}
+                    </div>
+
                 </div>
+                <hr class="hr_post">
                {{/each}}
             </div>
             <div class="col-md-6">
@@ -30,16 +44,71 @@
         
     </div>
     <div class="col-sm-4">
+        <h3 class="p-title h5 recomendados mt-3 mb-0">Recomendaciones</h3>
         <div>
             <div class="pt-2">
-                <img src="/img/home/relacionados.svg" class="img-fluid" alt="">
-                <h3>¿Por que dejar de Fumar?</h3>
-            </div>
-            <div class="pt-2">
-                <img src="/img/home/relacionados1.svg" class="img-fluid" alt="">
-                <h3>¿Por que dejar de Fumar?</h3>
+                <div class="post_item">
+                    <img src="/img/home/relacionados.svg" class="img-fluid" alt="">
                 </div>
+                <a href="/login" class="post_enlace_item">¿Por deberiamos hacernos una radiografía?</a>
+            </div>
+            <div class="pt-2" >
+                <div class="post_item">
+                <img src="/img/home/relacionados1.svg" class="img-fluid" alt="">
+                </div>
+                <h4>¿Por que dejar de Fumar?</h4>
+            </div>
         </div>
     </div>
 </div>
 </div>
+<footer class="pt-5 pb-4" id="contact">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-12">
+						<p class="mb-4">Puedes contactarnos de las siguientes maneras</p>
+						<ul class="f-address">
+							<li>
+								<div class="row">
+									<div class="col-1"><i class="fas fa-map-marker"></i></div>
+									<div class="col-10">
+										<h6 class="font-weight-bold mb-0">Dirección:</h6>
+										<p>Lima - Perú.</p>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="row">
+									<div class="col-1"><i class="far fa-envelope"></i></div>
+									<div class="col-10">
+										<h6 class="font-weight-bold mb-0">Have any questions?</h6>
+										<p><a href="#">Support@userthemes.com</a></p>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="row">
+									<div class="col-1"><i class="fas fa-phone-volume"></i></div>
+									<div class="col-10">
+										<h6 class="font-weight-bold mb-0">Address:</h6>
+										<p><a href="#">+XX (0) XX XX-XXXX-XXXX</a></p>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</footer>
+		<!-- Copyright -->
+		<section class="copyright">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 ">
+						<div class="text-center text-white">
+							&copy; 2018 Stalker. All Rights Reserved.
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>

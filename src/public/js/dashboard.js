@@ -28,11 +28,12 @@ $(function(){
 function addpaginaweb(){
     let titulopagina = document.getElementById("titulo_pagina");
     let textopagina = document.getElementsByClassName("jodit_wysiwyg")[0];
+    let resumen = document.getElementsByClassName("jodit_wysiwyg")[0].textContent.substr(0,80);
     // let mensaje = document.getElementById("mensaje");
     $.ajax({
         url:"/addpaginaweb",
         method:"POST",
-        data:{titulo:titulopagina.value,texto:textopagina.innerHTML},
+        data:{titulo:titulopagina.value,texto:textopagina.innerHTML,resumen:resumen},
         success:function(event){
             alert(event);
             // init_page();

@@ -7,9 +7,11 @@
     <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/6611670d58.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,700%7CSignika:300,400,600" media="all">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="/img/duck.ico" type="image/x-icon">
     <link rel="stylesheet" href="/css/homepage.css">
+    <link rel="stylesheet" href="/css/publicaciones.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     <title>tablero</title>
@@ -18,5 +20,26 @@
 {{{body}}}
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="/bootstrap/js/bootstrap.js"></script>
+    <script>
+        $(document).on("scroll",function(){
+      var desplazamientoActual = $(document).scrollTop();
+      if(desplazamientoActual>37){
+        document.getElementById("navbar_contenido").style = `
+        padding-left: 15px!important;
+        padding-right: 15px!important;
+        position: fixed;
+        width: 100%;
+        z-index: 99999;
+        transition: 1s;
+        transition: 1s;
+        animation: example 2s;
+        `
+      }else if(desplazamientoActual<37){
+        document.getElementById("navbar_contenido").style = ""
+      }
+      console.log(desplazamientoActual)
+    });
+
+    </script>
 </body>
 </html>
