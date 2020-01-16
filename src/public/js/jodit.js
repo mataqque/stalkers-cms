@@ -2810,6 +2810,7 @@ var Dialog = (function (_super) {
             '<div class="jodit_dialog_header-toolbar"></div>' +
             '</div>' +
             '<div class="jodit_dialog_content"></div>' +
+			'<div class="jodit_dialog_content"></div>'+
             '<div class="jodit_dialog_footer"></div>' +
             (self.options.resizable
                 ? '<div class="jodit_dialog_resizer"></div>'
@@ -3297,8 +3298,6 @@ var Widget;
 /* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-
 /*!
  * Jodit Editor (https://xdsoft.net/jodit/)
  * Licensed under GNU General Public License version 2 or later or a commercial license or MIT;
@@ -3308,6 +3307,7 @@ var Widget;
  * Copyright (c) 2013-2019 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+
 exports.setTimeout = function (callback, timeout, a1, a2, a3) {
     if (!timeout) {
         callback.call(null, a1, a2, a3);
@@ -22434,3 +22434,4 @@ module.exports = "<svg viewBox=\"0 0 1792 1792\"><path d=\"M1792 352v1088q0 42-3
 /***/ })
 /******/ ]);
 });
+

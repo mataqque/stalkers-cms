@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const home = require("../controllers/home"); // controlador home
 const images = require("../controllers/image");// controlador images
+const Image = require("../models/image");
 const path = require("path");
 const servicesFire = require("../../services/firebase");
 const db = servicesFire.db;
@@ -57,6 +58,14 @@ router.post("/",(req,res)=>{
         res.render("templates/home",{error});
     }
 });
+
+router.get("/politica-de-cookie",(req,res)=>{
+  res.render("templates/cookies",{layout:"politica-de-cookie"});
+})
+router.get("/politica-de-privacidad",(req,res)=>{
+  res.render("templates/privacidad",{layout:"politica-de-cookie"});
+});
+
 router.get("/sitemap.xml",sitemap.linksitemap);
 
 
@@ -149,6 +158,25 @@ router.get("/close",(req,res)=>{
   delete req.session.myvariable;
   
 });
+router.post("/motrar_galeria",async(req,res)=>{
+	const imagenes_mongo = await Image.find()
+	console.log(imagenes_mongo)
+	res.send(imagenes_mongo)
+})
+router.post("/upload",async(req,res)=>{
+	console.log(req.file) 
+    const image = new Image();
+    image.title = req.body.title;
+    image.descripition = req.body.description;
+    image.filename = req.body.filename;
+    image.path = "img/uploads/"+req.file.filename;
+    image.originalname = req.file.originalname;
+    image.mimetype = req.file.mimetype;
+    image.size = req.file.size;
+    await image.save()
+    res.send("subido")
+});
+
 
 router.get("/*sitemap*xml",(req,res)=>{
     let idsitemap = [];
