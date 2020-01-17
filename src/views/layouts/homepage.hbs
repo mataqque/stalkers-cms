@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" value="{{index}}">
+    {{#if index}}
+    <meta name="robots" content="noindex"/>
+    {{/if}}
     <link rel="stylesheet" href="/css/homepage.css">
     <link rel="stylesheet" href="./bootstrap/css/bootstrap.css">
     <link rel="shortcut icon" href="/img/duck.ico" type="image/x-icon">
@@ -34,7 +37,6 @@
       }else if(desplazamientoActual<37){
         document.getElementById("navbar_contenido").style = ""
       }
-      console.log(desplazamientoActual)
     });
 
     </script>

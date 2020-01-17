@@ -5,6 +5,7 @@
 body{
     font-family: Roboto,sans-serif;
     box-sizing: border-box;
+    background: black;
 }
 .link-enlace-post{
     color:rgb(36, 36, 36);
@@ -45,7 +46,9 @@ body{
 }
 .subitem>div{height: 100%;width: 100%;}
 .subitem>div>img{object-fit: cover;height: 100%;width: 100%;}
-
+.estilo_card{
+    margin: 10px;
+}
 
 /* comienza resposive*/
 @media (max-width:990px){

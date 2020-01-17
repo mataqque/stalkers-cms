@@ -150,10 +150,12 @@ li{
         width:100%
     }
  }
+ /*  */
 .content_admin_page{
     height: 100%;
     width: 100%;
-    display:block; 
+    display:flex;
+    flex-direction: row; 
     overflow-y:scroll;
 }
 .contenedor_admin_page{
@@ -161,6 +163,8 @@ li{
     padding: 15px;
     width: 100% !important;
     margin:0!important;
+    display: flex;
+    flex-direction: column;
 }
 .contenedor_session{
     /* height: 200px; */
@@ -295,4 +299,111 @@ li{
 #titulo_pagina{
     padding: 10px;
     font-size: 25px;
+}
+.option_contendor_admin_page{
+    height: 100%;
+    width: 500px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-right: 15px;
+    margin:0!important;
+}
+
+/*  */
+
+.content-input input,
+.content-select select{
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+}
+ 
+.content-input input{
+	visibility: hidden;
+	position: absolute;
+	right: 0;
+}
+.content-input{
+	position: relative;
+	margin-bottom: 30px;
+	padding:5px 0 5px 60px; /* Damos un padding de 60px para posicionar 
+        el elemento <i> en este espacio*/
+	display: block;
+}
+ 
+/* Estas reglas se aplicarán a todos las elementos i 
+después de cualquier input*/
+.content-input input + i{
+       background: #f0f0f0;
+       border:2px solid rgba(0,0,0,0.2);
+       position: absolute; 
+       left: 0;
+       top: 0;
+}
+ 
+/* Estas reglas se aplicarán a todos los i despues 
+de un input de tipo checkbox*/
+.content-input input[type=checkbox ] + i{
+	width: 52px;
+	height: 30px;
+	border-radius: 15px;
+}
+.content-input input[type=checkbox] + i:before{
+	content: ''; /* No hay contenido */
+	width: 26px;
+	height: 26px;
+	background: #fff;
+	border-radius: 50%;
+	position: absolute;
+	z-index: 1;
+	left: 0px;
+	top: 0px;
+	-webkit-box-shadow: 3px 0 3px 0 rgba(0,0,0,0.2);
+	box-shadow: 3px 0 3px 0 rgba(0,0,0,0.2);
+}
+.content-input input[type=checkbox]:checked + i:before{
+	left: 22px;
+	-webkit-box-shadow: -3px 0 3px 0 rgba(0,0,0,0.2);
+	box-shadow: 3px 0 -3px 0 rgba(0,0,0,0.2);
+}
+ 
+.content-input input[type=checkbox]:checked + i{
+ background: #2AC176;
+}
+
+.content-input input[type=checkbox] + i:after{
+	content: 'ON';
+	position: absolute;
+	font-size: 10px;
+	color: rgba(255,255,255,0.6);
+	top: 8px;
+	left: 4px;
+	opacity: 0 /* Ocultamos este elemento */;
+    transition: all 0.25s ease 0.25s;
+    top:6px;
+}
+.content-input input[type=checkbox]:checked + i:after{
+    opacity: 1;
+   }
+.componente_dashboard{
+    flex-basis: 100%;
+}
+.jodit_wysiwyg_mode{
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+}
+.jodit_workplace{
+    flex-basis: 100%;
+}
+
+.jodit_wysiwyg::-webkit-scrollbar {
+    width: 7px; 
+}
+.jodit_wysiwyg::-webkit-scrollbar-thumb {
+    background:rgb(77, 77, 77);
+    border-radius: 4px;
+}
+.jodit_wysiwyg::-webkit-scrollbar-track {
+    background: #b3b3b398;
 }

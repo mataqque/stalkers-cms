@@ -28,24 +28,25 @@ $(function(){
 function addpaginaweb(){
     let titulopagina = document.getElementById("titulo_pagina");
     let textopagina = document.getElementsByClassName("jodit_wysiwyg")[0];
-    let resumen = document.getElementsByClassName("jodit_wysiwyg")[0].textContent.substr(0,80);
-    // let mensaje = document.getElementById("mensaje");
+    let index = document.getElementById("autopista").checked;
+    let categoria = document.getElementById("categoria").value
+    let resumen = document.querySelectorAll(".jodit_wysiwyg>blockquote")[0].textContent.substr(0,80);
+    let imagen = document.querySelectorAll(".jodit_wysiwyg>* img")[0].src;
+    console.log(!index)
     $.ajax({
         url:"/addpaginaweb",
         method:"POST",
-        data:{titulo:titulopagina.value,texto:textopagina.innerHTML,resumen:resumen},
+        data:{
+            titulo:titulopagina.value,
+            texto:textopagina.innerHTML,
+            url:palabra,
+            resumen:resumen,
+            categoria:categoria,
+            index: !index,
+            imagen:imagen
+        },
         success:function(event){
             alert(event);
-            // init_page();
-        //     document.getElementsByClassName("contenido_html")[0].addEventListener("keydown",function(event){
-        //         let cantidad = contenedor[0].innerHTML.indexOf("<p>");
-        //         let etiquetap = contenedor[0].innerHTML.substr(cantidad,3);
-        //         if(etiquetap !== "<p>"){
-        //         let elemento = document.createElement("p");
-        //         elemento.textContent = "﻿";
-        //         document.getElementsByClassName("contenido_html")[0].appendChild(elemento)
-        //     }
-        // });
         }
     });
 }

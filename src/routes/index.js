@@ -23,9 +23,11 @@ router.get("/",function(req,res){
               titulo:savedata.titulo,
               fecha:savedata.fecha.toDate().toLocaleDateString("es-Es"),
               url:savedata.categoria+"/"+savedata.url,
-              articulo:savedata.content.substr(0,80),
+              articulo:savedata.resumen,
               cantcomentarios:savedata.cantcomentarios,
-              cantlike:savedata.cantlike
+              cantlike:savedata.cantlike,
+              imagen:savedata.imagen,
+              index:savedata.index,
             });
           })
           res.render("templates/homepage",{layout:"homepage",data});
@@ -83,19 +85,18 @@ router.get("/dashboardpagina",(req,res)=>{
 });
 
 router.post("/addpaginaweb",(req,res)=>{
-  function remplazar(){
-      let palabra = req.body.titulo.replace(" ","-");
-      return palabra;
-  }
-  console.log(req.body);
-  let data = {
-        content:req.body.texto,
-        fecha:new Date(),
-        titulo:req.body.titulo,
-        url:remplazar()
-  }
-  db.collection("articulos").doc(req.body.titulo).set(data);
-  res.send("se guardo!")
+    let data = {
+          content:req.body.texto,
+          fecha:new Date(),
+          titulo:req.body.titulo,
+          url:req.body.url,
+          resumen:req.body.resumen,
+          categoria:req.body.categoria,
+          imagen:req.body.imagen,
+          index:req.body.index,
+        }
+    db.collection("articulos").doc(req.body.titulo).set(data);
+    res.send("se guardo!");
 });
 
 router.get("/profile",function(req,res){
@@ -103,12 +104,13 @@ router.get("/profile",function(req,res){
    if(req.session.myvariable == "flavio"){
     res.render("templates/profile");
     }else{
-      res.redirect("/")
+      res.redirect("/");
     }
 });
 
 router.get("/articulos/:articulo?",confirmacion,(req,res)=>{
     let data = [];
+    let index;
     db.collection("articulos").where("url","==",req.params.articulo).get().then(snapshot => {
         if (snapshot.empty) {
           console.log('No matching documents.');
@@ -122,11 +124,14 @@ router.get("/articulos/:articulo?",confirmacion,(req,res)=>{
                   url:savedata.categoria+"/"+savedata.url,
                   articulo:savedata.content,
                   cantcomentarios:savedata.cantcomentarios,
-                  cantlike:savedata.cantlike
+                  cantlike:savedata.cantlike,
+                  index:savedata.index,
                 })
+                index = data[0].index;
+                console.log(index)
             });
-            console.log(data.articulo)
-            res.render("templates/articulo",{layout:"publicaciones",data})
+            // console.log(data.articulo)
+            res.render("templates/articulo",{layout:"publicaciones",data,index})
         }
       })
       .catch(err => {
@@ -160,7 +165,6 @@ router.get("/close",(req,res)=>{
 });
 router.post("/motrar_galeria",async(req,res)=>{
 	const imagenes_mongo = await Image.find()
-	console.log(imagenes_mongo)
 	res.send(imagenes_mongo)
 })
 router.post("/upload",async(req,res)=>{

@@ -40,10 +40,43 @@
             <h5>Agregar Página</h5>
                 <div class="componente_dashboard d-flex flex-column">
                     <input type="text" id="titulo_pagina" placeholder="Título">
+                    <div class="url_pagina py-1">
+                        <h6>Enlace permanente: <a href="#" id="url_dinamico" style="text-decoration: underline!important"></a></h6>
+                    </div>
                     <textarea id="area_editor" style="display: none;"></textarea>
                 </div>
                 <button onclick="addpaginaweb()" class="btn btn-success">Guardar página</button>
             </div>
+        <div class="option_contendor_admin_page">
+            <h5>Opciones de página</h5>
+             <div class="form-group">
+                    <label for="exampleFormControlInput1">Nueva Categoria</label>
+                    <input type="text" class="form-control" id="categoria" placeholder="Nueva categoria">
+            </div>
+                <div style="display: flex;flex-direction:row">
+                <span>Indexar </span><label class="content-input"><input checked type="checkbox" name="Vehiculo" id="autopista" value="autopista">
+	            <i></i> 
+                </label>
+                </div>
+                
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Etiqueta</label>
+                <select class="form-control" id="etiqueta">
+                <option>etiqueta1</option>
+                <option>etiqueta2</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Categoria</label>
+                <select class="form-control" id="otra_categoria">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                </select>
+            </div>           
+        </div>
     </section>
 	<div class="contenedor_galeria_principal" style="display:none">
 
@@ -171,8 +204,26 @@
             }
         });
       });
-			
-			
+	var palabra ="";
+    document.getElementById("url_dinamico").textContent =  window.location.origin+"/";
+
+    document.getElementById("categoria").addEventListener("keyup",(e)=>{
+        function_url()
+    })
+        
+    document.getElementById("titulo_pagina").addEventListener("keyup",(e)=>{
+            function_url()
+    });
+    
+    function function_url(){
+        let titulopalabra = document.getElementById("titulo_pagina").value
+        let categoriapalabra = document.getElementById("categoria").value.replace(/ /g,"-")
+        if(categoriapalabra){
+            categoriapalabra +="/";
+        }
+        palabra = titulopalabra.replace(/ /g,"-");
+        document.getElementById("url_dinamico").textContent = window.location.origin+"/"+categoriapalabra+palabra; 
+    }
 
 
 
