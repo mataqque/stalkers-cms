@@ -28,5 +28,18 @@
             flex-basis: 100%;
         }
     </style>
+    <script>
+    var contenedor = {todo:[{url:"google",imagenes:2},{url:"facebook",imagenes:3},{numero:2}]}
+    delete contenedor.todo.numero
+    var content = [];
+    for(num in contenedor.todo){
+        if(typeof contenedor.todo[num] != "number"){
+            content.push(contenedor.todo[num])
+        }
+    }
+
+    console.log(content)
+    
+    </script>
 </body>
 </html>

@@ -2,7 +2,7 @@
 
 <div class="container ajust">
 <div class="row ajust-contenedor">
-    <div class="col-sm-8 pb-4 pl-lg-5 pr-lg-3">
+    <div class="ajutar_imagen col-sm-8 pb-4 pl-lg-5 pr-lg-3">
         <div class="row">
             <div class="col-md-12">
             <div class="breadcrumbs"><span><a href="/">Portada</a> » <a href="/categoria">Categoria</a> » <a href="/articulo">Articulo</a></span></div>
@@ -13,8 +13,8 @@
                         <span class="meta author">
                             <a href="https://mejorconsalud.com/author/carmen-martin/" class=""><span>Autor: </span><strong>Flavio Mataqque</strong> </a>
                         </span>
-                        <span class="meta date"><i class="far fa-calendar"></i> 11 enero, 2020</span>
-                        <span class="meta date"><i class="icon-cont fas fa-eye ml-3"></i> 12 <i class="icon-cont fas fa-comments ml-3"></i> 3000</span>
+                        <span class="meta date"><i class="far fa-calendar"></i> {{fecha}}</span>
+                        <span class="meta date"><i class="icon-cont fas fa-eye ml-3"></i> {{views}} <i class="icon-cont fas fa-comments ml-3"></i> {{cantcomentarios}}</span>
                     </div>
                     <div class="content_articulo_post">
                     {{{articulo}}}
@@ -62,53 +62,5 @@
     </div>
 </div>
 </div>
-<footer class="pt-5 pb-4" id="contact">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-12">
-						<p class="mb-4">Puedes contactarnos de las siguientes maneras</p>
-						<ul class="f-address">
-							<li>
-								<div class="row">
-									<div class="col-1"><i class="fas fa-map-marker"></i></div>
-									<div class="col-10">
-										<h6 class="font-weight-bold mb-0">Dirección:</h6>
-										<p>Lima - Perú.</p>
-									</div>
-								</div>
-							</li>
-							<li>
-								<div class="row">
-									<div class="col-1"><i class="far fa-envelope"></i></div>
-									<div class="col-10">
-										<h6 class="font-weight-bold mb-0">Have any questions?</h6>
-										<p><a href="#">Support@userthemes.com</a></p>
-									</div>
-								</div>
-							</li>
-							<li>
-								<div class="row">
-									<div class="col-1"><i class="fas fa-phone-volume"></i></div>
-									<div class="col-10">
-										<h6 class="font-weight-bold mb-0">Address:</h6>
-										<p><a href="#">+XX (0) XX XX-XXXX-XXXX</a></p>
-									</div>
-								</div>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</footer>
 		<!-- Copyright -->
-		<section class="copyright">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12 ">
-						<div class="text-center text-white">
-							&copy; 2018 Stalker. All Rights Reserved.
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
+{{>footer}}

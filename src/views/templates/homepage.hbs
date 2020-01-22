@@ -1,6 +1,10 @@
 {{>navhomepage}}
+<header class="pt-3 container">
+    <h1 class="text-center">Las Aves exoticas más hemosas del mundo</h1>
+    <p class="text-center">Avesexoticas.org nace para difundir información veraz y de calidad sobre el cuidado, cría, reproducción y alimentación de más de 1000 pájaros y aves exóticas del mundo.</p>
+</header>
 <section>
-    <div class="container pt-5">
+    <div class="container pt-3">
         <div class="contenedor_post_polulares">
           <div class="item1">
             <div class="card">
@@ -63,23 +67,53 @@
         </div>
     </div>
 </section>
-    <section class="post_recientes container pt-5">
+    <section class="post_recientes container pt-3">
         <div class="row container m-0">
-            <h3 class="p-title mb-0">CATEGORIA 2 ARTICULOS</h3>
+            <h2 class="h3 p-title mb-1">Ciencia cosmica</h2>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit sunt eum voluptatem at, temporibus asperiores reprehenderit corporis quod labore non similique voluptatibus maiores unde, exercitationem ipsam iste dolore? Dolor, alias.</p>
             <div class="col-lg-12 d-flex">
                 <div class="row">
+                  {{#each data.cate}}
                   <div  class="col-md-3 col-sm-6">
-                    <a href="#" style="color:white">
-                    <div class="card bg-dark" style="border-radius: 0px">
-                            <img src="/img/home/carrucel2.svg" alt="" class="card-img-top" style="border-radius: 0px">
+                    <a href="{{url}}" style="color:white">
+                    <div class="ajust_card card bg-dark" style="border-radius: 0px">
+                            <img src="{{imagen}}" alt="" class="card-img-top" style="border-radius: 0px">
                             <div class="card-body">
-                                    <p class="h6">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam iusto praesentium at sunt saepe voluptatem soluta quis quibusdam quam quo porro laborum qui, odio, veniam repellendus quae ea eos maiores?</p>
-                                    <span><i class="far fa-clock"></i> 17 jun 2019</span>    
+                                    <h5 style="color: palegoldenrod;">{{titulo}}</h5>
+                                    <p class="h6">{{articulo}}</p>
+                                    <span><i class="far fa-clock"></i> {{fecha}}</span>    
                             </div>
                       </div>
                       </a>
                   </div>
+                  {{/each}}
+                </div>
+               
+            </div>
+            
+        </div>
+
+    </section>
+    <section class="post_recientes container pt-3">
+        <div class="row container m-0">
+            <h2 class="h3 p-title mb-1">Ciencia cosmica</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit sunt eum voluptatem at, temporibus asperiores reprehenderit corporis quod labore non similique voluptatibus maiores unde, exercitationem ipsam iste dolore? Dolor, alias.</p>
+            <div class="col-lg-12 d-flex">
+                <div class="row">
+                  {{#each data.cate2}}
+                  <div  class="col-md-3 col-sm-6">
+                    <a href="{{url}}" style="color:white">
+                    <div class="ajust_card card bg-dark" style="border-radius: 0px">
+                            <img src="{{imagen}}" alt="" class="card-img-top" style="border-radius: 0px">
+                            <div class="card-body">
+                                    <h5 style="color: palegoldenrod;">{{titulo}}</h5>
+                                    <p class="h6">{{articulo}}</p>
+                                    <span><i class="far fa-clock"></i> {{fecha}}</span>    
+                            </div>
+                      </div>
+                      </a>
+                  </div>
+                  {{/each}}
                 </div>
                
             </div>
@@ -89,20 +123,22 @@
     </section>
 <section class="post_recientes container pt-5">
     <div class="row">
-        <div class="col-lg-8">
+        <div class="col-lg-9">
         <h3 class="p-title">POST RECIENTES</h3>
         <div class="row">
-            <div class="col-md-6">
-                <div class="mb-3"><img src="/img/home/bitcoin.jpg" class="img-fluid" alt=""></div>
-                <h4>El valor del bitcoin aumenta</h4>
+           {{#each data.separado}}
+            <div class="col-md-6 ">
+             <a href="{{url}}" class="link-enlace-post">           
+                <div class="mb-3"><img class ="separado" src="{{imagen}}" class="img-fluid" alt=""></div>
+                <h4>{{titulo}}</h4>
                 <span class=""><span>Jun 08 2019 </span><i class="icon-cont fas fa-eye ml-3"></i> 12<i class="icon-cont fas fa-comments ml-3"></i> 3000</span>
-                <p class="pt-4">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa officiis eius voluptates adipisci facere? Laudantium laborum, odit illo veritatis quaerat expedita, quod eveniet quae facilis id officia unde quidem adipisci?
-                </p>
+                <p class="pt-4 justificar_parrafo">{{articulo}}</p>
+              </a>
             </div>
+            {{/each}}
             <div class="col-md-6">
                 <ul>
-                  {{#each data}}
+                  {{#each data.post}}
                     <li class="mb-3">
                       <a href="{{url}}" class="link-enlace-post">
                       <div class="elemento_post d-flex flex-row">
@@ -110,9 +146,9 @@
                         <div class="contendor_info_post">
                             <h4 class="h5 m-0">{{titulo}}</h4>
                             <p class="m-0">{{articulo}}</p>
-                            <span class=""><span><i class="far fa-clock icon-cont"></i>{{fecha}}</span><i class="icon-cont fas fa-eye ml-3"></i> 12<i class="icon-cont fas fa-comments ml-3"></i> 3000</span>
+                            <span class="keep_down"><span><i class="far fa-clock icon-cont"></i>{{fecha}}</span><i class="icon-cont fas fa-eye ml-3"></i> {{views}}<i class="icon-cont fas fa-comments ml-3"></i> 3000</span>
                         </div>
-                        </div>
+                      </div>
                         </a>
                     </li>
                     {{/each}}
@@ -120,18 +156,9 @@
             </div>
         </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-3">
                 <h3 class="p-title">POST POPULARES</h3>
         </div>
     </div>
 </section>
-<footer class="footer">
-    <div class="container pt-2">
-        <h5 class="h2"><span class="stal">Stal</span><span class="ker">ker</span></h5>
-        <div class="content-footer  row">
-            <div class="col-sm-4"></div>
-            <div class="col-sm-4"></div>
-            <div class="col-sm-4"></div>
-        </div>
-    </div>
-</footer>
+{{>footer}}

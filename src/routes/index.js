@@ -8,18 +8,21 @@ const db = servicesFire.db;
 const sitemap = require("../controllers/sitemap");
 const passport = require('passport');
 const {ensureAuthenticated,forwardAuthenticated} = require("../passport/auth");
+const admin = require("firebase-admin")
 
 router.get("/",function(req,res){
+  let init = true;
   let date = new Date();
-  let data = [];
-      db.collection("articulos").where("fecha","<",date).orderBy("fecha","desc").limit(3).get()
-      .then((snapshot=>{
-        if(snapshot.empty){
-          console.log("documeto no encontrado");
+  let data = {cate:[],cate2:[],post:[],separado:[]};
+  let collection  =  db.collection("articulos")
+        collection.where("categoria","==","articulos").get().then(snapshot => {
+        if (snapshot.empty){
+            console.log('No matching documents.');
+          return;
         }else{
-          snapshot.forEach(doc=>{
-            let savedata = doc.data();
-            data.push({
+      snapshot.forEach(doc => {
+        let savedata = doc.data();
+            data.cate.push({
               titulo:savedata.titulo,
               fecha:savedata.fecha.toDate().toLocaleDateString("es-Es"),
               url:savedata.categoria+"/"+savedata.url,
@@ -28,12 +31,74 @@ router.get("/",function(req,res){
               cantlike:savedata.cantlike,
               imagen:savedata.imagen,
               index:savedata.index,
+              views:savedata.views,
             });
+          });
+        }});
+        collection.where("categoria","in",["diabetes"]).orderBy("fecha","desc").limit(4).get().then(snapshot => {
+          if (snapshot.empty){
+              console.log('No matching documents.');
+            return;
+          }else{
+        snapshot.forEach(doc => {
+          let savedata = doc.data();
+              data.cate2.push({
+                titulo:savedata.titulo,
+                fecha:savedata.fecha.toDate().toLocaleDateString("es-Es"),
+                url:savedata.categoria+"/"+savedata.url,
+                articulo:savedata.resumen,
+                cantcomentarios:savedata.cantcomentarios,
+                cantlike:savedata.cantlike,
+                imagen:savedata.imagen,
+                index:savedata.index,
+                views:savedata.views,
+              });
+            })
+          }});
+  
+
+      db.collection("articulos").where("fecha","<",date).orderBy("fecha","desc").limit(4).get()
+      .then((snapshot=>{
+        if(snapshot.empty){
+          console.log("documeto no encontrado");
+        }else{
+          snapshot.forEach(doc=>{
+            if(init==true){
+            let savedata = doc.data();
+              data.separado.push({
+              titulo:savedata.titulo,
+              fecha:savedata.fecha.toDate().toLocaleDateString("es-Es"),
+              url:savedata.categoria+"/"+savedata.url,
+              articulo:savedata.resumen,
+              cantcomentarios:savedata.cantcomentarios,
+              cantlike:savedata.cantlike,
+              imagen:savedata.imagen,
+              index:savedata.index,
+              views:savedata.views,
+              });
+              init = false;
+            }else{
+              let savedata = doc.data();
+              data.post.push({
+              titulo:savedata.titulo,
+              fecha:savedata.fecha.toDate().toLocaleDateString("es-Es"),
+              url:savedata.categoria+"/"+savedata.url,
+              articulo:savedata.resumen,
+              cantcomentarios:savedata.cantcomentarios,
+              cantlike:savedata.cantlike,
+              imagen:savedata.imagen,
+              index:savedata.index,
+              views:savedata.views,
+              });
+            }
           })
           res.render("templates/homepage",{layout:"homepage",data});
-        }
+          }
         })
+
       )});
+
+
 
 router.get("/login",forwardAuthenticated,(req,res)=>{
     res.render("templates/login",{layout:"login"});
@@ -61,20 +126,13 @@ router.post("/",(req,res)=>{
     }
 });
 
-router.get("/politica-de-cookie",(req,res)=>{
+router.get("/politica-de-cookies",(req,res)=>{
   res.render("templates/cookies",{layout:"politica-de-cookie"});
 })
 router.get("/politica-de-privacidad",(req,res)=>{
   res.render("templates/privacidad",{layout:"politica-de-cookie"});
 });
 
-router.get("/sitemap.xml",sitemap.linksitemap);
-
-
-router.get("/main-sitemap.xsl",(req,res)=>{
-  res.header('Content-Type', 'application/xml');
-  res.sendFile(path.join(__dirname,"main-sitemap.xsl"));
-})
 
 router.get("/dashboard",ensureAuthenticated,(req,res)=>{
   res.render("templates/dashboard",{layout:"dashboard"})  
@@ -85,6 +143,7 @@ router.get("/dashboardpagina",(req,res)=>{
 });
 
 router.post("/addpaginaweb",(req,res)=>{
+    
     let data = {
           content:req.body.texto,
           fecha:new Date(),
@@ -94,53 +153,47 @@ router.post("/addpaginaweb",(req,res)=>{
           categoria:req.body.categoria,
           imagen:req.body.imagen,
           index:req.body.index,
+          views:0,
+          likes:0,
+          cantcomentarios:0,
         }
-    db.collection("articulos").doc(req.body.titulo).set(data);
+    const addpagina = db.collection(data.categoria).doc(data.url).set(data);
     res.send("se guardo!");
+    let campo = {}
+    campo[data.url] = {
+        url:data.categoria+data.url,
+        imagen:data.imagen,
+        lastmod:data.fecha,
+      }
+    const sitemap = db.collection("sitemap").doc("post_sitemap1.xml").update(campo);
 });
 
 router.get("/profile",function(req,res){
-   console.log(req.session.myvariable);
-   if(req.session.myvariable == "flavio"){
-    res.render("templates/profile");
+  let date = new Date();
+  let collection  =  db.collection("articulos");
+  collection.where("categoria","in",["articulos"]).get().then(snapshot => {
+    if (snapshot.empty) {
+      console.log('No matching documents.');
+      return;
     }else{
-      res.redirect("/");
-    }
-});
-
-router.get("/articulos/:articulo?",confirmacion,(req,res)=>{
-    let data = [];
-    let index;
-    db.collection("articulos").where("url","==",req.params.articulo).get().then(snapshot => {
-        if (snapshot.empty) {
-          console.log('No matching documents.');
-          return;
-        }else{
-            snapshot.forEach(doc => {
-                let savedata = doc.data();
-                data.push({
-                  titulo:savedata.titulo,
-                  fecha:savedata.fecha.toDate().toLocaleDateString("es-Es"),
-                  url:savedata.categoria+"/"+savedata.url,
-                  articulo:savedata.content,
-                  cantcomentarios:savedata.cantcomentarios,
-                  cantlike:savedata.cantlike,
-                  index:savedata.index,
-                })
-                index = data[0].index;
-                console.log(index)
-            });
-            // console.log(data.articulo)
-            res.render("templates/articulo",{layout:"publicaciones",data,index})
-        }
+      snapshot.forEach(doc => {
+        console.log(doc.data().titulo)
       })
-      .catch(err => {
-        console.log('Error getting documents', err);
-      });
+    }})
+  collection.where("categoria","in",["salud"]).limit.get().then(snapshot => {
+    if (snapshot.empty) {
+      console.log('No matching documents.');
+      return;
+    }else{
+      snapshot.forEach(doc => {
+        console.log(doc.data().titulo)
+      })
+    }})
+    res.send("ingreso")
 });
 
 function confirmacion(req,res,next){
-    console.log("ingreso aqui")
+    // console.log("ingreso aqui")
     next();
   }
 
@@ -180,36 +233,58 @@ router.post("/upload",async(req,res)=>{
     await image.save()
     res.send("subido")
 });
+//permite encontrar al archivo sitemap
 
+router.get("/sitemap.xml",sitemap.linksitemap);
+router.get("/main-sitemap.xsl",(req,res)=>{
+  res.header('Content-Type', 'application/xml');
+  res.sendFile(path.join(__dirname,"main-sitemap.xsl"));
+});
 
-router.get("/*sitemap*xml",(req,res)=>{
-    let idsitemap = [];
-    console.log(req.originalUrl.substr(1,this.length));
-    db.collection("sitemap").doc(req.originalUrl.substr(1,this.length))
-    .collection("subsitemap").get().then(snatshop=>{
-      if(snatshop.empty){
-        res.render("templates/404");
-      }else{
-        snatshop.forEach(doc=>{
-              let array = (doc.data())
-              idsitemap.push({id:array.loc,lastmod:array.lastmod});
+router.get("/*sitemap*xml",sitemap.DinamicRouteSitemap);
+
+  router.get("/:articulos/:articulo",confirmacion,(req,res,next)=>{
+    console.log(req.params.articulos)
+    let data = [];
+    let index;
+    db.collection(req.params.articulos).where("url","==",req.params.articulo)
+    .get().then(snapshot => {
+        if (snapshot.empty) {
+          console.log('No matching documents.');
+          next();
+          return;
+        }else{
+            snapshot.forEach(doc => {
+                let savedata = doc.data();
+                data.push({
+                  titulo:savedata.titulo,
+                  fecha:savedata.fecha.toDate().toLocaleDateString("es-Es"),
+                  url:savedata.categoria+"/"+savedata.url,
+                  articulo:savedata.content,
+                  cantcomentarios:savedata.cantcomentarios,
+                  cantlike:savedata.cantlike,
+                  index:savedata.index,
+                  views:savedata.views,
+                })
+                index = data[0].index;
             });
-            res.header('Content-Type', 'application/xml');
-            res.render("templates/sitemap",{layout:"subsitemap",idsitemap}); 
-      }
-    }).catch(erro=>{
-        console.log(erro.message);
-    });
+            res.render("templates/articulo",{layout:"publicaciones",data,index});
+            db.collection(req.params.articulos).doc(req.params.articulo).update({
+              views:admin.firestore.FieldValue.increment(1)
+            })
+        }
+      }).catch(err => {
+        throw err;
+      });
 });
 
 router.use(function(req, res, next){
-    res.status(404);
-    let linkcss = "/css/404.css"
-    if (req.accepts('html')) {
-      res.render('templates/404', {linkcss});
-      return;
-    }
-
-  });
+  res.status(404);
+  let linkcss = "/css/404.css"
+  if (req.accepts('html')){
+    res.render('templates/404', {linkcss});
+    return;
+  }
+});
 
 module.exports = router;
