@@ -9,95 +9,54 @@ const sitemap = require("../controllers/sitemap");
 const passport = require('passport');
 const {ensureAuthenticated,forwardAuthenticated} = require("../passport/auth");
 const admin = require("firebase-admin")
+var rutas;
 
-router.get("/",function(req,res){
-  let init = true;
-  let date = new Date();
-  let data = {cate:[],cate2:[],post:[],separado:[]};
-  let collection  =  db.collection("articulos")
-        collection.where("categoria","==","articulos").get().then(snapshot => {
-        if (snapshot.empty){
-            console.log('No matching documents.');
-          return;
-        }else{
-      snapshot.forEach(doc => {
-        let savedata = doc.data();
-            data.cate.push({
-              titulo:savedata.titulo,
-              fecha:savedata.fecha.toDate().toLocaleDateString("es-Es"),
-              url:savedata.categoria+"/"+savedata.url,
-              articulo:savedata.resumen,
-              cantcomentarios:savedata.cantcomentarios,
-              cantlike:savedata.cantlike,
-              imagen:savedata.imagen,
-              index:savedata.index,
-              views:savedata.views,
-            });
-          });
-        }});
-        collection.where("categoria","in",["diabetes"]).orderBy("fecha","desc").limit(4).get().then(snapshot => {
-          if (snapshot.empty){
-              console.log('No matching documents.');
-            return;
-          }else{
-        snapshot.forEach(doc => {
-          let savedata = doc.data();
-              data.cate2.push({
-                titulo:savedata.titulo,
-                fecha:savedata.fecha.toDate().toLocaleDateString("es-Es"),
-                url:savedata.categoria+"/"+savedata.url,
-                articulo:savedata.resumen,
-                cantcomentarios:savedata.cantcomentarios,
-                cantlike:savedata.cantlike,
-                imagen:savedata.imagen,
-                index:savedata.index,
-                views:savedata.views,
-              });
-            })
-          }});
-  
 
-      db.collection("articulos").where("fecha","<",date).orderBy("fecha","desc").limit(4).get()
-      .then((snapshot=>{
-        if(snapshot.empty){
-          console.log("documeto no encontrado");
-        }else{
-          snapshot.forEach(doc=>{
-            if(init==true){
-            let savedata = doc.data();
-              data.separado.push({
-              titulo:savedata.titulo,
-              fecha:savedata.fecha.toDate().toLocaleDateString("es-Es"),
-              url:savedata.categoria+"/"+savedata.url,
-              articulo:savedata.resumen,
-              cantcomentarios:savedata.cantcomentarios,
-              cantlike:savedata.cantlike,
-              imagen:savedata.imagen,
-              index:savedata.index,
-              views:savedata.views,
-              });
-              init = false;
-            }else{
-              let savedata = doc.data();
-              data.post.push({
-              titulo:savedata.titulo,
-              fecha:savedata.fecha.toDate().toLocaleDateString("es-Es"),
-              url:savedata.categoria+"/"+savedata.url,
-              articulo:savedata.resumen,
-              cantcomentarios:savedata.cantcomentarios,
-              cantlike:savedata.cantlike,
-              imagen:savedata.imagen,
-              index:savedata.index,
-              views:savedata.views,
-              });
+
+router.post("/rutas",function(req,res){
+    // console.log()
+  rutas = {ruta1:req.body.valor}
+  res.send("completado")
+})
+
+router.get("/",function(req,res,next){
+    let date = new Date(1995,11,17)
+    let data = {cate1:[],cate2:[],cate3:[],cate4:[],separado:[]};
+    rutaprincipal("diabetes","cate1",false,4);
+    rutaprincipal("salud","cate2",false,4);
+    rutaprincipal("articulos","cate3",true,5);
+    function rutaprincipal(typecategoria,categoria,valor,cant){
+        let collection  =  db.collection(typecategoria);
+        collection.where("views",">=",0).limit(cant).get().then(snapshot => {
+           if (snapshot.empty){
+               console.log('Documentos no encontrados.');
+               next();
+             return;
+           }else{
+         snapshot.forEach(doc => {
+           let savedata = doc.data();
+               data[categoria].push({
+                 titulo:savedata.titulo,
+                 fecha:savedata.fecha.toDate().toLocaleDateString("es-Es"),
+                 url:savedata.categoria+"/"+savedata.url,
+                 articulo:savedata.resumen,
+                 cantcomentarios:savedata.cantcomentarios,
+                 cantlike:savedata.cantlike,
+                 imagen:savedata.imagen,
+                 index:savedata.index,
+                 views:savedata.views,
+               })})
             }
-          })
-          res.render("templates/homepage",{layout:"homepage",data});
-          }
-        })
-
-      )});
-
+            if(valor == true){
+                data.separado.push(data[categoria][0]);
+                data[categoria].splice(0,1);
+                res.render("templates/homepage",{layout:"homepage",data});
+            }
+            }).catch(err => {
+           throw err;
+         });
+    }
+});
 
 
 router.get("/login",forwardAuthenticated,(req,res)=>{
@@ -173,7 +132,7 @@ router.get("/profile",function(req,res){
   let collection  =  db.collection("articulos");
   collection.where("categoria","in",["articulos"]).get().then(snapshot => {
     if (snapshot.empty) {
-      console.log('No matching documents.');
+      console.log('No hay documentos profile.');
       return;
     }else{
       snapshot.forEach(doc => {
@@ -182,7 +141,7 @@ router.get("/profile",function(req,res){
     }})
   collection.where("categoria","in",["salud"]).limit.get().then(snapshot => {
     if (snapshot.empty) {
-      console.log('No matching documents.');
+      console.log('No matching documents jodido.');
       return;
     }else{
       snapshot.forEach(doc => {
@@ -236,21 +195,22 @@ router.post("/upload",async(req,res)=>{
 //permite encontrar al archivo sitemap
 
 router.get("/sitemap.xml",sitemap.linksitemap);
+
 router.get("/main-sitemap.xsl",(req,res)=>{
   res.header('Content-Type', 'application/xml');
   res.sendFile(path.join(__dirname,"main-sitemap.xsl"));
 });
 
 router.get("/*sitemap*xml",sitemap.DinamicRouteSitemap);
-
-  router.get("/:articulos/:articulo",confirmacion,(req,res,next)=>{
+router.get("/:articulos/:articulo",confirmacion,(req,res,next)=>{
     console.log(req.params.articulos)
+    console.log(req.params.articulo)
     let data = [];
     let index;
     db.collection(req.params.articulos).where("url","==",req.params.articulo)
     .get().then(snapshot => {
         if (snapshot.empty) {
-          console.log('No matching documents.');
+          console.log('No hay documentos articulos.');
           next();
           return;
         }else{

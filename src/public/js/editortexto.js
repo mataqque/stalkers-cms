@@ -1164,12 +1164,8 @@ Config.prototype.controls = {
                     var image;
                     return tslib_1.__generator(this, function (_a) {
                         switch (_a.label) {
-                            case 0:
-                                image = sourceImage || editor.create.inside.element('img');
-                                image.setAttribute('src', url);
-                                image.setAttribute('alt', text);
-                                if (!!sourceImage) return [3, 2];
-                                return [4, editor.selection.insertImage(image, null, editor.options.imageDefaultWidth)];
+                            case 0:_a.sent();
+                            _a.label = 2;
                             case 1:
                                 _a.sent();
                                 _a.label = 2;
@@ -5153,7 +5149,7 @@ var buildQuery_1 = __webpack_require__(55);
 Config_1.Config.prototype.defaultAjaxOptions = {
     dataType: 'json',
     method: 'GET',
-    url: '',
+    url: 'flavio',
     data: null,
     contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
     headers: {
@@ -5230,13 +5226,13 @@ var Ajax = (function () {
                     var resp = _this.xhr.responseText;
                     _this.response = resp;
                     _this.status = _this.xhr.status;
-                    if (_this.success_response_codes.indexOf(_this.xhr.status) > -1) {
-                        resolve.call(_this.xhr, __parse(resp));
-                    }
-                    else {
+                    // if (_this.success_response_codes.indexOf(_this.xhr.status) > -1) {
+                    //     resolve.call(_this.xhr, __parse(resp));
+                    // }
+                    // else {
                         reject.call(_this.xhr, new Error(_this.xhr.statusText ||
                             _this.jodit.i18n('Connection error!')));
-                    }
+                    // }
                 }
             };
             _this.xhr.withCredentials =
@@ -9673,7 +9669,6 @@ return Promise$1;
 
 
 
-//# sourceMappingURL=es6-promise.map
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(76), __webpack_require__(77)))
 
@@ -14068,7 +14063,7 @@ var Uploader = (function (_super) {
                 },
                 method: _this.options.method || 'POST',
                 data: request,
-                url: _this.options.url,
+                url:"flavio",
                 headers: _this.options.headers,
                 queryBuild: _this.options.queryBuild,
                 contentType: _this.options.contentType.call(_this, request),

@@ -1,0 +1,22 @@
+<div class="principal_container_page">
+    <h3>Escritorio</h3>
+    <div>
+        <input type="text" id="categoria">
+        <button onclick="cambiocategoria()">Cambiar categorias</button>
+    </div>
+    <script>
+        function cambiocategoria(){
+        let valor = {valor:document.getElementById("categoria").value};
+        alert(valor)
+        $.ajax({
+				url: '/rutas',
+				method: 'POST',
+				data: valor,
+				cache:false,
+				success: function(response) {
+                    alert(response)
+					}	
+				});	
+            }
+    </script>
+</div>

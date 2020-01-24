@@ -5,82 +5,41 @@
 </header>
 <section>
     <div class="container pt-3">
-        <div class="contenedor_post_polulares">
-          <div class="item1">
-            <div class="card">
-                <img src="/img/home/mundo-2020.svg" alt="">
-                <div class="card-img-overlay">
-                        <div class="position_footer">
-                            <h2 class="title h6">Niño acaba de ganar 1 millon de dolares mientras dormia</h2>
-                            <span class="caracteristica"><span>Jun 08 2019 </span><i class="icon-cont fas fa-eye ml-3"></i> 12<i class="icon-cont fas fa-comments ml-3"></i> 3000</span>
-                        </div>   
-                      </div>
-            </div>
+          <div class="contenedor">
+        {{#each data.cate3}}
+                <div class="item1">
+                  <a href="{{url}}">
+                    <div class="card">
+                        <img src="{{imagen}}" alt="" class="img-fluid">
+                        <div class="card-img-overlay">
+                          <div class="position_footer">
+                            <h3 class="text-light h5 title">{{titulo}}</h3>
+                            <span class="caracteristica">
+                              <span>
+                                <i class="far fa-clock icon-cont"> </i> {{fecha}} </span>
+                                <i class="icon-cont fas fa-eye ml-3" aria-hidden="true"></i> {{views}}<i class="icon-cont fas fa-comments ml-3" aria-hidden="true"></i> 0</span>
+                          </div>
+                        </div> 
+                    </div>
+                  </a>
+                </div>
+        {{/each}}
           </div>
-          <div class="item2">
-            <div class="subitem">
-                <div class="card"><img src="/img/home/carrucel3.svg" alt="">
-                  <div class="card-img-overlay">
-                    <div class="position_footer">
-                        <h2 class="title h6">Niño acaba de ganar 1 millon de dolares mientras dormia</h2>
-                        <span class="caracteristica"><span>Jun 08 2019 </span><i class="icon-cont fas fa-eye ml-3"></i> 12<i class="icon-cont fas fa-comments ml-3"></i> 3000</span>
-                    </div>   
-                  </div>
-                </div>
-            </div>
-            <div class="subitem">
-                <div class="card"><img src="/img/home/carrucel2.svg" alt="">
-                  <div class="card-img-overlay">
-                    <div class="position_footer">
-                        <h2 class="title h6">Niño acaba de ganar 1 millon de dolares mientras dormia</h2>
-                        <span class="caracteristica"><span>Jun 08 2019 </span><i class="icon-cont fas fa-eye ml-3"></i> 12<i class="icon-cont fas fa-comments ml-3"></i> 3000</span>
-                    </div>   
-                  </div>
-                </div>
-            </div>
-            
-          </div>
-          <div class="item2">
-            <div class="subitem">
-                <div class="card"><img src="/img/home/relacionados1.svg" alt="">
-                  <div class="card-img-overlay">
-                    <div class="position_footer">
-                        <h2 class="title h6">Niño acaba de ganar 1 millon de dolares mientras dormia</h2>
-                        <span class="caracteristica"><span>Jun 08 2019 </span><i class="icon-cont fas fa-eye ml-3"></i> 12<i class="icon-cont fas fa-comments ml-3"></i> 3000</span>
-                    </div>   
-                  </div>
-                </div>
-            </div>
-            <div class="subitem">
-                <div class="card"><img src="/img/home/carrucel1.svg" alt="">
-                  <div class="card-img-overlay">
-                    <div class="position_footer">
-                        <h2 class="title h6">Niño acaba de ganar 1 millon de dolares mientras dormia</h2>
-                        <span class="caracteristica"><span>Jun 08 2019 </span><i class="icon-cont fas fa-eye ml-3"></i> 12<i class="icon-cont fas fa-comments ml-3"></i> 3000</span>
-                    </div>   
-                  </div>
-                </div>
-            </div>
-            
-          </div>
-          
-        </div>
-    </div>
 </section>
     <section class="post_recientes container pt-3">
-        <div class="row container m-0">
+        <div class="row container m-0 p-0">
             <h2 class="h3 p-title mb-1">Ciencia cosmica</h2>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit sunt eum voluptatem at, temporibus asperiores reprehenderit corporis quod labore non similique voluptatibus maiores unde, exercitationem ipsam iste dolore? Dolor, alias.</p>
             <div class="col-lg-12 d-flex">
                 <div class="row">
-                  {{#each data.cate}}
-                  <div  class="col-md-3 col-sm-6">
-                    <a href="{{url}}" style="color:white">
-                    <div class="ajust_card card bg-dark" style="border-radius: 0px">
+                  {{#each data.cate1}}
+                  <div  class="col-lg-3  col-md-6 col-sm-6 pb-2 px-sm-0 px-md-1">
+                    <a href="{{url}}" class="text-dark">
+                    <div class="ajust_card card" style="border-radius: 0px">
                             <img src="{{imagen}}" alt="" class="card-img-top" style="border-radius: 0px">
                             <div class="card-body">
-                                    <h5 style="color: palegoldenrod;">{{titulo}}</h5>
-                                    <p class="h6">{{articulo}}</p>
+                                    <h5>{{titulo}}</h5>
+                                    <p class="p">{{articulo}}</p>
                                     <span><i class="far fa-clock"></i> {{fecha}}</span>    
                             </div>
                       </div>
@@ -90,24 +49,22 @@
                 </div>
                
             </div>
-            
         </div>
-
     </section>
     <section class="post_recientes container pt-3">
-        <div class="row container m-0">
-            <h2 class="h3 p-title mb-1">Ciencia cosmica</h2>
+        <div class="row container m-0 p-0">
+            <h2 class="h3 p-title mb-1">Ciencia cosmica nuevo</h2>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit sunt eum voluptatem at, temporibus asperiores reprehenderit corporis quod labore non similique voluptatibus maiores unde, exercitationem ipsam iste dolore? Dolor, alias.</p>
             <div class="col-lg-12 d-flex">
-                <div class="row">
+               <div class="row">
                   {{#each data.cate2}}
-                  <div  class="col-md-3 col-sm-6">
-                    <a href="{{url}}" style="color:white">
-                    <div class="ajust_card card bg-dark" style="border-radius: 0px">
+                  <div  class="col-lg-3  col-md-6 col-sm-6 pb-2 px-sm-0 px-md-1">
+                    <a href="{{url}}" class="text-dark">
+                    <div class="ajust_card card" style="border-radius: 0px">
                             <img src="{{imagen}}" alt="" class="card-img-top" style="border-radius: 0px">
                             <div class="card-body">
-                                    <h5 style="color: palegoldenrod;">{{titulo}}</h5>
-                                    <p class="h6">{{articulo}}</p>
+                                    <h5>{{titulo}}</h5>
+                                    <p class="p">{{articulo}}</p>
                                     <span><i class="far fa-clock"></i> {{fecha}}</span>    
                             </div>
                       </div>
@@ -127,9 +84,10 @@
         <h3 class="p-title">POST RECIENTES</h3>
         <div class="row">
            {{#each data.separado}}
-            <div class="col-md-6 ">
+            <div class="col-md-6">
              <a href="{{url}}" class="link-enlace-post">           
-                <div class="mb-3"><img class ="separado" src="{{imagen}}" class="img-fluid" alt=""></div>
+                <div class="mb-3">
+                  <img class ="separado" src="{{imagen}}" class="img-fluid" alt=""></div>
                 <h4>{{titulo}}</h4>
                 <span class=""><span>Jun 08 2019 </span><i class="icon-cont fas fa-eye ml-3"></i> 12<i class="icon-cont fas fa-comments ml-3"></i> 3000</span>
                 <p class="pt-4 justificar_parrafo">{{articulo}}</p>
@@ -138,19 +96,20 @@
             {{/each}}
             <div class="col-md-6">
                 <ul>
-                  {{#each data.post}}
-                    <li class="mb-3">
+                  {{#each data.cate3}}
+                    <li class="mb-1 shadow-style">
                       <a href="{{url}}" class="link-enlace-post">
                       <div class="elemento_post d-flex flex-row">
                         <div class="imagen_post"><img src="{{imagen}}" class="img-fluid" alt=""></div>
                         <div class="contendor_info_post">
                             <h4 class="h5 m-0">{{titulo}}</h4>
-                            <p class="m-0">{{articulo}}</p>
+                            <p class="m-0">{{articulo}}<span style="text-decoration: underline;color:blue"> ..Leer más</span></p>
                             <span class="keep_down"><span><i class="far fa-clock icon-cont"></i>{{fecha}}</span><i class="icon-cont fas fa-eye ml-3"></i> {{views}}<i class="icon-cont fas fa-comments ml-3"></i> 3000</span>
                         </div>
                       </div>
                         </a>
                     </li>
+                    <hr style="margin:4px;">
                     {{/each}}
                 </ul>
             </div>

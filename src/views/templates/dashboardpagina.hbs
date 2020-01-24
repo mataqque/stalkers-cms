@@ -1,4 +1,3 @@
-<script src="/js/jodit.js"></script>
 <link rel="stylesheet" href="/css/jodit.css">
 <div class="principal_container_page">  
     {{>dashboardnav}}
@@ -41,7 +40,7 @@
                 <div class="componente_dashboard d-flex flex-column">
                     <input type="text" id="titulo_pagina" placeholder="Título">
                     <div class="url_pagina py-1">
-                        <h6>Enlace permanente: <a href="#" id="url_dinamico" style="text-decoration: underline!important"></a></h6>
+                        <h6>Enlace permanente: <a href="#" id="url_dinamico" style="text-decoration: underline!important">https://stalkerman.herokuapp.com/</a></h6>
                     </div>
                     <textarea id="area_editor" style="display: none;"></textarea>
                 </div>
@@ -54,7 +53,7 @@
                     <input type="text" class="form-control" id="categoria" placeholder="Nueva categoria">
             </div>
                 <div style="display: flex;flex-direction:row">
-                <span>Indexar </span><label class="content-input"><input checked type="checkbox" name="Vehiculo" id="autopista" value="autopista">
+                <span>Indexar </span><label class="content-input"><input checked="" type="checkbox" name="Vehiculo" id="autopista" value="autopista">
 	            <i></i> 
                 </label>
                 </div>
@@ -110,8 +109,7 @@
     </div>
 </div>
 <script>
-    
-    var editor = new Jodit('#area_editor', {
+       var editor = new Jodit('#area_editor', {
         textIcons: false,
         iframe: false,
         iframeStyle: '*,.jodit_wysiwyg {color:red;}',
@@ -216,7 +214,7 @@
     });
     
     function function_url(){
-        let titulopalabra = document.getElementById("titulo_pagina").value
+        let titulopalabra = document.getElementById("titulo_pagina").value.replace(/["?"]/g,"")
         let categoriapalabra = document.getElementById("categoria").value.replace(/ /g,"-")
         if(categoriapalabra){
             categoriapalabra +="/";

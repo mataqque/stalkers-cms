@@ -3,6 +3,7 @@ const sitemap = {};
 
 sitemap.linksitemap = function(req,res){
     let all = [];
+    let url = req.protocol+'://'+req.get("host")+"/";
     db.collection("pruebasitemap").get().then(snapshot=>{
       snapshot.forEach(doc=>{
         for(num in doc.data()){
@@ -14,7 +15,7 @@ sitemap.linksitemap = function(req,res){
       });
       console.log(all)
       res.header('Content-Type', 'application/xml');
-      res.render("templates/sitemap",{layout:"site",all});
+      res.render("templates/sitemap",{layout:"site",all,urllocal});
     });
   }
 
