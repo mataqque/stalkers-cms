@@ -40,7 +40,7 @@
                             <div class="card-body">
                                     <h5>{{titulo}}</h5>
                                     <p class="p">{{articulo}}</p>
-                                    <span><i class="far fa-clock"></i> {{fecha}}</span>    
+                                    <span class="keep_down"><span><i class="far fa-clock icon-cont"></i>{{fecha}}</span><i class="icon-cont fas fa-eye ml-3"></i> {{views}}<i class="icon-cont fas fa-comments ml-3"></i> 3000</span>    
                             </div>
                       </div>
                       </a>
@@ -83,21 +83,10 @@
         <div class="col-lg-9">
         <h3 class="p-title">POST RECIENTES</h3>
         <div class="row">
-           {{#each data.separado}}
-            <div class="col-md-6">
-             <a href="{{url}}" class="link-enlace-post">           
-                <div class="mb-3">
-                  <img class ="separado" src="{{imagen}}" class="img-fluid" alt=""></div>
-                <h4>{{titulo}}</h4>
-                <span class=""><span>Jun 08 2019 </span><i class="icon-cont fas fa-eye ml-3"></i> 12<i class="icon-cont fas fa-comments ml-3"></i> 3000</span>
-                <p class="pt-4 justificar_parrafo">{{articulo}}</p>
-              </a>
-            </div>
-            {{/each}}
-            <div class="col-md-6">
-                <ul>
+            <div class="col-md-12 pb-3" style="height: auto;">
+                <ul class="contenedor_grid_post" style="height: auto;">
                   {{#each data.cate3}}
-                    <li class="mb-1 shadow-style">
+                    <li class="mb-1 grid_post">
                       <a href="{{url}}" class="link-enlace-post">
                       <div class="elemento_post d-flex flex-row">
                         <div class="imagen_post"><img src="{{imagen}}" class="img-fluid" alt=""></div>

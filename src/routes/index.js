@@ -20,14 +20,11 @@ router.post("/rutas",function(req,res){
 })
 
 router.get("/",function(req,res,next){
-    let date = new Date(1995,11,17)
+    let date = new Date(1995,11,17);
     let data = {cate1:[],cate2:[],cate3:[],cate4:[],separado:[]};
-    rutaprincipal("diabetes","cate1",false,4);
-    rutaprincipal("salud","cate2",false,4);
-    rutaprincipal("articulos","cate3",true,5);
-    function rutaprincipal(typecategoria,categoria,valor,cant){
-        let collection  =  db.collection(typecategoria);
-        collection.where("views",">=",0).limit(cant).get().then(snapshot => {
+  
+    async function rutaprincipal (typecategoria,categoria,valor,cant){
+        let collection  = await db.collection(typecategoria).where("views",">=",0).limit(cant).get().then(snapshot => {
            if (snapshot.empty){
                console.log('Documentos no encontrados.');
                next();
@@ -48,14 +45,23 @@ router.get("/",function(req,res,next){
                })})
             }
             if(valor == true){
-                data.separado.push(data[categoria][0]);
-                data[categoria].splice(0,1);
-                res.render("templates/homepage",{layout:"homepage",data});
+                
             }
+            return true;
             }).catch(err => {
            throw err;
          });
+         return collection;
     }
+    Promise.all([
+      rutaprincipal("diabetes","cate1",false,4),
+      rutaprincipal("salud","cate2",false,4),
+      rutaprincipal("articulos","cate3",true,4)
+    ]).then(values =>{
+      // data.separado.push(data[articulos][0]);
+      // data[categoria].splice(0,1);
+      res.render("templates/homepage",{layout:"homepage",data});
+    }).catch(err=>console.log(err))
 });
 
 

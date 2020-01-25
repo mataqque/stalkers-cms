@@ -3,7 +3,7 @@ const sitemap = {};
 
 sitemap.linksitemap = function(req,res){
     let all = [];
-    let urllocal = req.protocol+'://'+req.get("host")+"/";
+    let urllocal = req.protocol+'://'+req.get("host");
     db.collection("pruebasitemap").get().then(snapshot=>{
       snapshot.forEach(doc=>{
         for(num in doc.data()){

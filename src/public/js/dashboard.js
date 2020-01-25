@@ -31,7 +31,9 @@ function addpaginaweb(){
     let index = document.getElementById("autopista").checked;
     let categoria = document.getElementById("categoria").value
     let resumen = document.querySelectorAll(".jodit_wysiwyg>blockquote")[0].textContent.substr(0,80);
-    let imagen = document.querySelectorAll(".jodit_wysiwyg>* img")[0].src;
+    let  google_url = document.querySelectorAll(".jodit_wysiwyg>* img")[0].src; 
+    let separado = google_url.substr(google_url.indexOf("//")+2,google_url.length);
+    let imagen = separado.substr(separado.indexOf("/"),separado.length);
     console.log(!index)
     $.ajax({
         url:"/addpaginaweb",
