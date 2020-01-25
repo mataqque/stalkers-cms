@@ -5,6 +5,8 @@
 body{
     font-family: Roboto,sans-serif;
     box-sizing: border-box;
+    font-display: fallback;
+    /* background: rgb(231, 231, 231)!important; */
 }
 .link-enlace-post{
     color:rgb(36, 36, 36);
@@ -249,8 +251,8 @@ body{
 }
 .imagen_post>img{
     width: 100%;
-    height: 100%!important;
-    object-fit: cover!important;
+    height: 100%;object-fit: cover!important;
+    
 }
 .contendor_info_post{
     width: 70%;
