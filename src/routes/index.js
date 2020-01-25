@@ -1,6 +1,4 @@
 const router = require("express").Router();
-const home = require("../controllers/home"); // controlador home
-const images = require("../controllers/image");// controlador images
 const Image = require("../models/image");
 const path = require("path");
 const servicesFire = require("../../services/firebase");
@@ -8,10 +6,11 @@ const db = servicesFire.db;
 const sitemap = require("../controllers/sitemap");
 const passport = require('passport');
 const {ensureAuthenticated,forwardAuthenticated} = require("../passport/auth");
-const admin = require("firebase-admin")
+const admin = require("firebase-admin");
+const gulp = require('gulp');
+const webp = require('gulp-webp');
+const fs = require("fs");
 var rutas;
-
-
 
 router.post("/rutas",function(req,res){
     // console.log()
@@ -186,7 +185,16 @@ router.post("/motrar_galeria",async(req,res)=>{
 	res.send(imagenes_mongo)
 })
 router.post("/upload",async(req,res)=>{
-	console.log(req.file) 
+  console.log(req.file.path)
+  const call = (callback)=>{
+    fs.unlink(req.file.path,function(e){
+      gulp.src(req.file.path)
+      .pipe(webp())
+      .pipe(gulp.dest(path.join(__dirname,"../public/img/uploads")));
+      callback(e)
+    })
+  }
+
     const image = new Image();
     image.title = req.body.title;
     image.descripition = req.body.description;
