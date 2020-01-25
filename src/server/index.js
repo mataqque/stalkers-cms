@@ -4,14 +4,14 @@ const webApp = require("http").createServer(app);
 const socket = require("socket.io")(webApp);
 const path = require("path");
 const exphbs = require("express-handlebars");
-const PORT = process.env.PORT||3000;
+const PORT = process.env.PORT||4000;
 const session  = require("express-session");
 const servicesFire = require("../../services/firebase");
 const passport = require("passport");
 const mongoose = require("mongoose");
 const flash = require("connect-flash");
 const multer = require("multer");
-
+const helmet = require("helmet")
 
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
@@ -25,6 +25,7 @@ const storage = multer.diskStorage({
     cb(null,file.originalname)
   }
 });
+app.use(helmet());
 app.use(multer({storage:storage}).single("image"));
 
 app.listen(app.get("port"),()=>{
@@ -37,10 +38,18 @@ mongoose.connect(database,{ useNewUrlParser: true })
   .catch(err => console.log(err));
 // settings
 app.use(flash());
+var expiryDate = new Date( Date.now() + 60 * 60 * 1000 );
 app.use(session({
     secret:"MySecret",
     resave:true,
-    saveUninitialized:true
+    saveUninitialized:true,
+    cookie:{
+            secure: true,
+            httpOnly: true,
+            domain: 'example.com',
+            path: 'foo/bar',
+            expires: expiryDate
+    }
 }));
 app.use(passport.initialize());
 app.use(passport.session());
