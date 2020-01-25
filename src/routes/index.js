@@ -185,15 +185,15 @@ router.post("/motrar_galeria",async(req,res)=>{
 	res.send(imagenes_mongo)
 })
 router.post("/upload",async(req,res)=>{
-  console.log(req.file.path)
-  const call = (callback)=>{
-    fs.unlink(req.file.path,function(e){
-      gulp.src(req.file.path)
-      .pipe(webp())
-      .pipe(gulp.dest(path.join(__dirname,"../public/img/uploads")));
-      callback(e)
-    })
-  }
+  // console.log(req.file.path)
+  // const call = (callback)=>{
+  //   fs.unlink(req.file.path,function(e){
+  //     gulp.src(req.file.path)
+  //     .pipe(webp())
+  //     .pipe(gulp.dest(path.join(__dirname,"../public/img/uploads")));
+  //     callback(e)
+  //   })
+  // }
 
     const image = new Image();
     image.title = req.body.title;
