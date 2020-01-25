@@ -11,9 +11,10 @@
                   <a href="{{url}}">
                     <div class="card">
                         <img src="{{imagen}}" alt="" class="img-fluid">
-                        <div class="card-img-overlay">
+                        <div class="card-img-overlay d-flex align-items-end">
                           <div class="position_footer">
                             <h3 class="text-light h5 title">{{titulo}}</h3>
+                            <p class="text-light">{{articulo}}<strong>...Leer más</strong></p>
                             <span class="caracteristica">
                               <span>
                                 <i class="far fa-clock icon-cont"> </i> {{fecha}} </span>
@@ -39,8 +40,8 @@
                             <img src="{{imagen}}" alt="" class="card-img-top" style="border-radius: 0px">
                             <div class="card-body">
                                     <h5>{{titulo}}</h5>
-                                    <p class="p">{{articulo}}</p>
-                                    <span class="keep_down"><span><i class="far fa-clock icon-cont"></i>{{fecha}}</span><i class="icon-cont fas fa-eye ml-3"></i> {{views}}<i class="icon-cont fas fa-comments ml-3"></i> 3000</span>    
+                                    <p class="p">{{articulo}}<strong>...Leer más</strong></p>
+                                    <span class="keep_down"><span><i class="far fa-clock icon-cont"></i>{{fecha}}</span><i class="icon-cont fas fa-eye ml-3"></i> {{views}}<i class="icon-cont fas fa-comments ml-3"></i>0</span>    
                             </div>
                       </div>
                       </a>
@@ -58,14 +59,14 @@
             <div class="col-lg-12 d-flex">
                <div class="row">
                   {{#each data.cate2}}
-                  <div  class="col-lg-3  col-md-6 col-sm-6 pb-2 px-sm-0 px-md-1">
+                                    <div  class="col-lg-3  col-md-6 col-sm-6 pb-2 px-sm-0 px-md-1">
                     <a href="{{url}}" class="text-dark">
                     <div class="ajust_card card" style="border-radius: 0px">
                             <img src="{{imagen}}" alt="" class="card-img-top" style="border-radius: 0px">
                             <div class="card-body">
                                     <h5>{{titulo}}</h5>
                                     <p class="p">{{articulo}}</p>
-                                    <span><i class="far fa-clock"></i> {{fecha}}</span>    
+                                    <span class="keep_down"><span><i class="far fa-clock icon-cont"></i>{{fecha}}</span><i class="icon-cont fas fa-eye ml-3"></i> {{views}}<i class="icon-cont fas fa-comments ml-3"></i>0</span>    
                             </div>
                       </div>
                       </a>
@@ -91,9 +92,9 @@
                       <div class="elemento_post d-flex flex-row">
                         <div class="imagen_post"><img src="{{imagen}}" class="img-fluid" alt=""></div>
                         <div class="contendor_info_post">
-                            <h4 class="h5 m-0">{{titulo}}</h4>
-                            <p class="m-0">{{articulo}}<span style="text-decoration: underline;color:blue"> ..Leer más</span></p>
-                            <span class="keep_down"><span><i class="far fa-clock icon-cont"></i>{{fecha}}</span><i class="icon-cont fas fa-eye ml-3"></i> {{views}}<i class="icon-cont fas fa-comments ml-3"></i> 3000</span>
+                            <h4 class="h5 m-0 text-dark">{{titulo}}</h4>
+                            <p class="m-0 text-dark">{{articulo}}<strong>...Leer más</strong></p>
+                            <span class="keep_down text-dark"><span><i class="far fa-clock icon-cont"></i>{{fecha}}</span><i class="icon-cont fas fa-eye ml-3"></i> {{views}}<i class="icon-cont fas fa-comments ml-3"></i> 3000</span>
                         </div>
                       </div>
                         </a>

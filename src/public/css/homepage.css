@@ -83,9 +83,12 @@ body{
     justify-content: center;
     align-items: center;
 }
-.grid_post:nth-child(1)>a>div>div:nth-child(2){
+    .grid_post:nth-child(1)>a>div>div:nth-child(2){
     padding:0px 30px 0px 30px;
-}
+    }
+    .card-body{
+        padding: 13px!important;
+    }
 @media (max-width:1500px){
     .item1:nth-child(1)>a>div>div>.position_footer>h3{
         font-size: 25px;
@@ -167,15 +170,18 @@ body{
         border-radius: 0px;
         flex-direction: row!important;
     }
+    .card-body>p,.card-body>h5{
+        margin: 0;
+    }
     .card-body{
-        padding: 0px 1px 0px 10px!important;
+        padding: 10px 5px 0px 10px!important;
     }
     .px-sm-0{
         padding-left: 0!important;
         padding-right: 0!important;
     }
     .ajust_card>img{
-        width:40%;
+        width:36%;
         height:100%!important
     }
     .contenedor{
@@ -217,9 +223,7 @@ body{
     background: linear-gradient(rgba(0, 0, 0, 0.24),rgba(0, 0, 0, 0.534))
 }
 .position_footer{
-    position: absolute;
-    bottom: 10px;
-    /* background: red */
+    position: relative;
 }
 .caracteristica{color:white!important;}
 .icon-cont{color: #f8b500!important;}
