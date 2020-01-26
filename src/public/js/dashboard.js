@@ -26,7 +26,9 @@ $(function(){
 });
 
 function addpaginaweb(){
-    let titulopagina = document.getElementById("titulo_pagina");
+    let titulopagina = document.getElementById("titulo_pagina").value;
+    let nuevotitulo = titulopagina.replace(titulopagina.substr(0,1),titulopagina.substr(0,1).toUpperCase())
+    console.log(nuevotitulo)
     let textopagina = document.getElementsByClassName("jodit_wysiwyg")[0];
     let index = document.getElementById("autopista").checked;
     let categoria = document.getElementById("categoria").value
@@ -39,7 +41,7 @@ function addpaginaweb(){
         url:"/addpaginaweb",
         method:"POST",
         data:{
-            titulo:titulopagina.value,
+            titulo:nuevotitulo,
             texto:textopagina.innerHTML,
             url:palabra,
             resumen:resumen,
