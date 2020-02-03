@@ -50,9 +50,9 @@ router.get("/",function(req,res,next){
          return collection;
     }
     Promise.all([
-      rutaprincipal("diabetes","cate1",false,4),
-      rutaprincipal("salud","cate2",false,4),
-      rutaprincipal("articulos","cate3",true,4)
+      rutaprincipal("hacking","cate1",false,4),
+      // rutaprincipal("salud","cate2",false,4),
+      // rutaprincipal("articulos","cate3",true,4)
     ]).then(values =>{
       // data.separado.push(data[articulos][0]);
       // data[categoria].splice(0,1);
