@@ -8,6 +8,9 @@ body{
     font-display: fallback;
     /* background: rgb(231, 231, 231)!important; */
 }
+.contenedor{
+    padding: 10px;
+}
 .link-enlace-post{
     color:rgb(36, 36, 36);
 }
@@ -89,6 +92,12 @@ body{
     .card-body{
         padding: 13px!important;
     }
+.ajust_card{
+    border: 0px!important;
+    box-shadow: 0px 0px 0px 0px!important;
+}
+.anuncio{width: 100%;position: sticky; top: 60px;}
+.anuncio>img{width: 100%;}
 @media (max-width:1500px){
     .item1:nth-child(1)>a>div>div>.position_footer>h3{
         font-size: 25px;

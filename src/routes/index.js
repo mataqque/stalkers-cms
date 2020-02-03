@@ -43,9 +43,6 @@ router.get("/",function(req,res,next){
                  views:savedata.views,
                })})
             }
-            if(valor == true){
-                
-            }
             return true;
             }).catch(err => {
            throw err;
@@ -156,10 +153,6 @@ router.get("/profile",function(req,res){
     res.send("ingreso")
 });
 
-function confirmacion(req,res,next){
-    // console.log("ingreso aqui")
-    next();
-  }
 
 router.post("/contactos",(req,res)=>{
   console.log(req.body.usuario)
@@ -216,21 +209,20 @@ router.get("/main-sitemap.xsl",(req,res)=>{
 });
 
 router.get("/*sitemap*xml",sitemap.DinamicRouteSitemap);
-router.get("/:articulos/:articulo",confirmacion,(req,res,next)=>{
-    console.log(req.params.articulos)
-    console.log(req.params.articulo)
-    let data = [];
-    let index;
-    db.collection(req.params.articulos).where("url","==",req.params.articulo)
-    .get().then(snapshot => {
-        if (snapshot.empty) {
-          console.log('No hay documentos articulos.');
-          next();
-          return;
-        }else{
-            snapshot.forEach(doc => {
+
+router.get("/:articulos/:articulo",(req,res,next)=>{
+    let data = {cate1:[],cate2:[],cate3:[]}
+    let index
+    async function rutaprincipal (typecategoria,categoria,valor,cant){
+        let collection  = await db.collection(req.params.articulos).where("url","==",req.params.articulo).limit(cant)
+        .get().then(snapshot => {
+            if (snapshot.empty) {
+              console.log('No hay documentos articulos.');
+              next();
+              return;
+            }else{snapshot.forEach(doc => {
                 let savedata = doc.data();
-                data.push({
+                data[categoria].push({
                   titulo:savedata.titulo,
                   fecha:savedata.fecha.toDate().toLocaleDateString("es-Es"),
                   url:savedata.categoria+"/"+savedata.url,
@@ -240,16 +232,52 @@ router.get("/:articulos/:articulo",confirmacion,(req,res,next)=>{
                   index:savedata.index,
                   views:savedata.views,
                 })
-                index = data[0].index;
+                index = data[categoria][0].index;
             });
-            res.render("templates/articulo",{layout:"publicaciones",data,index});
-            db.collection(req.params.articulos).doc(req.params.articulo).update({
-              views:admin.firestore.FieldValue.increment(1)
-            })
+            return true
         }
       }).catch(err => {
         throw err;
       });
+      return collection
+  }
+  async function ArticulosRelacionados(typecategoria,categoria,valor,cant){
+    let collection  = await db.collection(typecategoria).where("views",">=",0).limit(cant).get().then(snapshot => {
+       if (snapshot.empty){
+           console.log('Documentos no encontrados.');
+           next();
+         return;
+       }else{
+     snapshot.forEach(doc => {
+       let savedata = doc.data();
+           data[categoria].push({
+             titulo:savedata.titulo,
+             fecha:savedata.fecha.toDate().toLocaleDateString("es-Es"),
+             url:savedata.categoria+"/"+savedata.url,
+             articulo:savedata.resumen,
+             cantcomentarios:savedata.cantcomentarios,
+             cantlike:savedata.cantlike,
+             imagen:savedata.imagen,
+             index:savedata.index,
+             views:savedata.views,
+           })})
+        }
+        return true;
+        }).catch(err => {
+       throw err;
+     });
+     return collection;
+}
+  Promise.all([
+    rutaprincipal(req.params.articulos,"cate1",false,1),
+    ArticulosRelacionados("salud","cate2",false,4),
+    ArticulosRelacionados("diabetes","cate3",false,4),
+  ]).then(values =>{
+    res.render("templates/articulo",{layout:"publicaciones",data,index});
+            db.collection(req.params.articulos).doc(req.params.articulo).update({
+              views:admin.firestore.FieldValue.increment(1)
+            })
+  }).catch(err=>console.log(err))
 });
 
 router.use(function(req, res, next){

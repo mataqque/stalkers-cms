@@ -28,8 +28,9 @@ $(function(){
 function addpaginaweb(){
     let titulopagina = document.getElementById("titulo_pagina").value;
     let nuevotitulo = titulopagina.replace(titulopagina.substr(0,1),titulopagina.substr(0,1).toUpperCase())
-    console.log(nuevotitulo)
-    let textopagina = document.getElementsByClassName("jodit_wysiwyg")[0];
+    let globalword = document.getElementsByClassName("jodit_wysiwyg")[0].innerHTML;
+    let re = new RegExp(window.location.origin,"g");
+    let textopagina = globalword.replace(re,"")
     let index = document.getElementById("autopista").checked;
     let categoria = document.getElementById("categoria").value
     let resumen = document.querySelectorAll(".jodit_wysiwyg>blockquote")[0].textContent.substr(0,80);
@@ -42,7 +43,7 @@ function addpaginaweb(){
         method:"POST",
         data:{
             titulo:nuevotitulo,
-            texto:textopagina.innerHTML,
+            texto:textopagina,
             url:palabra,
             resumen:resumen,
             categoria:categoria,

@@ -1,7 +1,6 @@
 {{>navhomepage}}
 <header class="pt-3 container">
-    <h1 class="text-center">Las Aves exoticas más hemosas del mundo</h1>
-    <p class="text-center">Avesexoticas.org nace para difundir información veraz y de calidad sobre el cuidado, cría, reproducción y alimentación de más de 1000 pájaros y aves exóticas del mundo.</p>
+    <h1 class="display-3 text-center pt-3"><span class="stal">stal</span><span class="text-dark font-weight-bold">ker</span></h1>
 </header>
 <section>
     <div class="container pt-3">
@@ -29,12 +28,12 @@
 </section>
     <section class="post_recientes container pt-3">
         <div class="row container m-0 p-0">
-            <h2 class="h3 p-title mb-1">Ciencia cosmica</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit sunt eum voluptatem at, temporibus asperiores reprehenderit corporis quod labore non similique voluptatibus maiores unde, exercitationem ipsam iste dolore? Dolor, alias.</p>
-            <div class="col-lg-12 d-flex">
+            <div class="col-lg-9 d-flex flex-column">
+                          <h2 class="h3 p-title mb-1">Hacking y seguridad</h2>
+            <p>El hacking generalmente se refiere a la intrusión no autorizada en una computadora o una red.La persona que participa en actividades de piratería es conocida como hacker. Este pirata informático puede alterar el sistema o las características de seguridad para lograr un objetivo que difiere del propósito original del sistema.</p>
                 <div class="row">
                   {{#each data.cate1}}
-                  <div  class="col-lg-3  col-md-6 col-sm-6 pb-2 px-sm-0 px-md-1">
+                  <div  class="col-lg-4  col-md-6 col-sm-6 pb-2 px-sm-0 px-md-1">
                     <a href="{{url}}" class="text-dark">
                     <div class="ajust_card card" style="border-radius: 0px">
                             <img src="{{imagen}}" alt="" class="card-img-top" style="border-radius: 0px">
@@ -49,24 +48,33 @@
                   <hr>
                   {{/each}}
                 </div>
-               
+            </div>
+            <div class="col-lg-3 d-flex flex-column">
+              <h4 class="h4 p-title mb-1">Categorias</h4>
+              <div class="anuncio">
+                  <img class="img-fluid" src="/img/anuncio.gif" alt="">
+              </div>
             </div>
         </div>
     </section>
+
+    <div class="container">
+      <hr>
+    </div>
     <section class="post_recientes container pt-3">
         <div class="row container m-0 p-0">
-            <h2 class="h3 p-title mb-1">Ciencia cosmica nuevo</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit sunt eum voluptatem at, temporibus asperiores reprehenderit corporis quod labore non similique voluptatibus maiores unde, exercitationem ipsam iste dolore? Dolor, alias.</p>
-            <div class="col-lg-12 d-flex">
-               <div class="row">
+            <div class="col-lg-9 d-flex flex-column">
+                          <h2 class="h3 p-title mb-1">Hacking y seguridad</h2>
+            <p>El hacking generalmente se refiere a la intrusión no autorizada en una computadora o una red.La persona que participa en actividades de piratería es conocida como hacker. Este pirata informático puede alterar el sistema o las características de seguridad para lograr un objetivo que difiere del propósito original del sistema.</p>
+                <div class="row">
                   {{#each data.cate2}}
-                                    <div  class="col-lg-3  col-md-6 col-sm-6 pb-2 px-sm-0 px-md-1">
+                  <div  class="col-lg-4  col-md-6 col-sm-6 pb-2 px-sm-0 px-md-1">
                     <a href="{{url}}" class="text-dark">
                     <div class="ajust_card card" style="border-radius: 0px">
                             <img src="{{imagen}}" alt="" class="card-img-top" style="border-radius: 0px">
                             <div class="card-body">
                                     <h5>{{titulo}}</h5>
-                                    <p class="height-line">{{articulo}}</p>
+                                    <p class="height-line">{{articulo}}<strong>...Leer más</strong></p>
                                     <span class="keep_down"><span><i class="far fa-clock icon-cont"></i>{{fecha}}</span><i class="icon-cont fas fa-eye ml-3"></i> {{views}}<i class="icon-cont fas fa-comments ml-3"></i> 0</span>    
                             </div>
                       </div>
@@ -75,11 +83,14 @@
                   <hr>
                   {{/each}}
                 </div>
-               
             </div>
-            
+            <div class="col-lg-3 d-flex flex-column">
+              <h4 class="h4 p-title mb-1">Anuncio</h4>
+              <div class="anuncio">
+                <img class="img-fluid" src="/img/anuncio.gif" alt="">
+              </div>
+            </div>
         </div>
-
     </section>
 <section class="post_recientes container pt-5">
     <div class="row">

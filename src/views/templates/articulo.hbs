@@ -4,9 +4,9 @@
 <div class="row ajust-contenedor">
     <div class="ajutar_imagen col-sm-8 pb-4 pl-lg-5 pr-lg-3">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12 pt-2">
             <div class="breadcrumbs"><span><a href="/">Portada</a> » <a href="/categoria">Categoria</a> » <a href="/articulo">Articulo</a></span></div>
-               {{#each data}}
+               {{#each data.cate1}}
                 <div>
                     <h1 class="m-0 h2">{{titulo}}</h1>
                     <div class="metas pb-2 pt-1">
@@ -24,40 +24,35 @@
                 <hr class="hr_post">
                {{/each}}
             </div>
-            <div class="col-md-6">
+        {{#each data.cate3}}
+            <div class="col-md-6 contenedor_articulos">
+                <a href="/{{url}}"> 
                 <div>
-                    <img src="/img/home/idea-2020.svg" class="img-fluid"alt="">
+                    <img src="{{imagen}}" class="img-fluid"alt="">
                 <div>
-                    <h3 class="">17 ecuaciones que cambiaron la historia</h1>
-                    <p>Las matemáticas están presentes en nuestro día a día de innumerables formas. El matemático y científico Ian Stewart h...</p>
+                    <h3 class="text-center h4 text-dark">{{titulo}}</h1>
+                    <p class=" text-dark">{{articulo}}</p>
                 </div>
                 </div>
+                </a>
             </div>
-            <div class="col-md-6">
-                <div><img src="/img/home/mejores-noticias.svg" class="img-fluid" alt=""></div>
-            <div>
-                    <h3 class="h">Top noticias cientificas del 2019</h1>
-                    <p>Las matemáticas están presentes en nuestro día a día de innumerables formas. El matemático y científico Ian Stewart h...</p>
-                </div>
-            </div>
+        {{/each}}
         </div>
         
     </div>
-    <div class="col-sm-4 pr-lg-5 pl-lg-5">
+    <div class="col-sm-4 pr-lg-5 pl-lg-5 pb-3">
         <h3 class="p-title h5 recomendados mt-3 mb-0">Recomendaciones</h3>
-        <div>
+        <div class="contenedor_recomendados">
+        {{#each data.cate2}}
+        <a href="/{{url}}" class="post_enlace_item">
             <div class="pt-2">
                 <div class="post_item">
-                    <img src="/img/home/relacionados.svg" class="img-fluid" alt="">
+                    <img src="{{imagen}}" class="img-fluid" alt="">
                 </div>
-                <a href="/login" class="post_enlace_item">¿Por deberiamos hacernos una radiografía?</a>
+                <h3 class="text-center py-1 h5 bg-dark text-light">{{titulo}}</h3>
             </div>
-            <div class="pt-2" >
-                <div class="post_item">
-                <img src="/img/home/relacionados1.svg" class="img-fluid" alt="">
-                </div>
-                <h4>¿Por que dejar de Fumar?</h4>
-            </div>
+        </a>
+        {{/each}}
         </div>
     </div>
 </div>
