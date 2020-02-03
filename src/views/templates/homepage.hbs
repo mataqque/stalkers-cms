@@ -13,7 +13,7 @@
                         <div class="card-img-overlay d-flex align-items-end">
                           <div class="position_footer">
                             <h3 class="text-light h5 title">{{titulo}}</h3>
-                            <p class="text-light">{{articulo}}<strong>...Leer más</strong></p>
+                            <p class="text-light m-0">{{articulo}}<strong>...Leer más</strong></p>
                             <span class="caracteristica">
                               <span>
                                 <i class="far fa-clock icon-cont"> </i> {{fecha}} </span>
@@ -64,10 +64,10 @@
     <section class="post_recientes container pt-3">
         <div class="row container m-0 p-0">
             <div class="col-lg-9 d-flex flex-column">
-                          <h2 class="h3 p-title mb-1">Hacking y seguridad</h2>
+                          <h2 class="h3 p-title mb-1">TUTORIALES</h2>
             <p>El hacking generalmente se refiere a la intrusión no autorizada en una computadora o una red.La persona que participa en actividades de piratería es conocida como hacker. Este pirata informático puede alterar el sistema o las características de seguridad para lograr un objetivo que difiere del propósito original del sistema.</p>
                 <div class="row">
-                  {{#each data.cate2}}
+                  {{#each data.cate3}}
                   <div  class="col-lg-4  col-md-6 col-sm-6 pb-2 px-sm-0 px-md-1">
                     <a href="{{url}}" class="text-dark">
                     <div class="ajust_card card" style="border-radius: 0px">
@@ -95,11 +95,11 @@
 <section class="post_recientes container pt-5">
     <div class="row">
         <div class="col-lg-9">
-        <h3 class="p-title">POST RECIENTES</h3>
+        <h3 class="p-title">TECNOLOGIAS </h3>
         <div class="row">
             <div class="col-md-12 pb-3" style="height: auto;">
                 <ul class="contenedor_grid_post" style="height: auto;">
-                  {{#each data.cate3}}
+                  {{#each data.cate2}}
                     <li class="mb-1 grid_post">
                       <a href="{{url}}" class="link-enlace-post">
                       <div class="elemento_post d-flex flex-row">

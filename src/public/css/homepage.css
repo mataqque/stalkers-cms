@@ -98,6 +98,10 @@ body{
 }
 .anuncio{width: 100%;position: sticky; top: 60px;}
 .anuncio>img{width: 100%;}
+.position_footer>p{
+    line-height: 1em;
+}
+.grid_post:nth-child(1)>a{height: 100%;}
 @media (max-width:1500px){
     .item1:nth-child(1)>a>div>div>.position_footer>h3{
         font-size: 25px;

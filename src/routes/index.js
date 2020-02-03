@@ -52,7 +52,7 @@ router.get("/",function(req,res,next){
     Promise.all([
       rutaprincipal("hacking","cate1",false,4),
       rutaprincipal("tutoriales","cate2",false,4),
-      rutaprincipal("tecnologias","cate3",true,4)
+      rutaprincipal("tecnologias","cate3",true,5)
     ]).then(values =>{
       // data.separado.push(data[articulos][0]);
       // data[categoria].splice(0,1);
@@ -211,6 +211,7 @@ router.get("/main-sitemap.xsl",(req,res)=>{
 router.get("/*sitemap*xml",sitemap.DinamicRouteSitemap);
 
 router.get("/:articulos/:articulo",(req,res,next)=>{
+  console.log(req.params.articulos)
     let data = {cate1:[],cate2:[],cate3:[]}
     let index
     async function rutaprincipal (typecategoria,categoria,valor,cant){
@@ -270,8 +271,8 @@ router.get("/:articulos/:articulo",(req,res,next)=>{
 }
   Promise.all([
     rutaprincipal(req.params.articulos,"cate1",false,1),
-    ArticulosRelacionados("salud","cate2",false,4),
-    ArticulosRelacionados("diabetes","cate3",false,4),
+    ArticulosRelacionados("hacking","cate2",false,4),
+    ArticulosRelacionados("tutoriales","cate3",false,4),
   ]).then(values =>{
     res.render("templates/articulo",{layout:"publicaciones",data,index});
             db.collection(req.params.articulos).doc(req.params.articulo).update({
