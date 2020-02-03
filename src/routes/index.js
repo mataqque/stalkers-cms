@@ -52,7 +52,7 @@ router.get("/",function(req,res,next){
     Promise.all([
       rutaprincipal("hacking","cate1",false,4),
       rutaprincipal("tutoriales","cate2",false,4),
-      // rutaprincipal("articulos","cate3",true,4)
+      rutaprincipal("tecnologias","cate3",true,4)
     ]).then(values =>{
       // data.separado.push(data[articulos][0]);
       // data[categoria].splice(0,1);
