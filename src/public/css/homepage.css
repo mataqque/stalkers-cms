@@ -8,6 +8,11 @@ body{
     font-display: fallback;
     /* background: rgb(231, 231, 231)!important; */
 }
+.letter-type{
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 18px;
+}
 .contenedor{
     padding: 10px;
 }

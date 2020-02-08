@@ -21,7 +21,7 @@ router.post("/rutas",function(req,res){
 router.get("/",function(req,res,next){
     let date = new Date(1995,11,17);
     let data = {cate1:[],cate2:[],cate3:[],cate4:[],separado:[]};
-  
+    let ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress || (req.connection.socket ? req.connection.socket.remoteAddress : null);
     async function rutaprincipal (typecategoria,categoria,valor,cant){
         let collection  = await db.collection(typecategoria).where("views",">=",0).limit(cant).get().then(snapshot => {
            if (snapshot.empty){
@@ -50,13 +50,14 @@ router.get("/",function(req,res,next){
          return collection;
     }
     Promise.all([
-      rutaprincipal("hacking","cate1",false,4),
-      rutaprincipal("tutoriales","cate2",false,4),
-      rutaprincipal("tecnologias","cate3",true,5)
+      // rutaprincipal("hacking","cate1",false,4),
+      // rutaprincipal("tutoriales","cate2",false,4),
+      rutaprincipal("technology","cate1",true,5)
     ]).then(values =>{
       // data.separado.push(data[articulos][0]);
       // data[categoria].splice(0,1);
       res.render("templates/homepage",{layout:"homepage",data});
+      db.collection("IPS-VISITAS-STALKER").doc(ip).set({ip:ip,date:new Date()});
     }).catch(err=>console.log(err))
 });
 
@@ -122,7 +123,7 @@ router.post("/addpaginaweb",(req,res)=>{
     res.send("se guardo!");
     let campo = {}
     campo[data.url] = {
-        url:data.categoria+data.url,
+        url:data.categoria+"/"+data.url,
         imagen:data.imagen,
         lastmod:data.fecha,
       }
