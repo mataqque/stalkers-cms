@@ -20,7 +20,6 @@ sitemap.linksitemap = function(req,res){
 
   sitemap.DinamicRouteSitemap = function(req,res){
     let idsitemap = [];
-    let linkcss = "/css/404.css"
     console.log(req.originalUrl)
     // console.log(req.originalUrl.substr(1,this.length));
 

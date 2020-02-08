@@ -272,8 +272,8 @@ router.get("/:articulos/:articulo",(req,res,next)=>{
 }
   Promise.all([
     rutaprincipal(req.params.articulos,"cate1",false,1),
-    ArticulosRelacionados("hacking","cate2",false,4),
-    ArticulosRelacionados("tutoriales","cate3",false,4),
+    // ArticulosRelacionados("hacking","cate2",false,4),
+    // ArticulosRelacionados("tutoriales","cate3",false,4),
   ]).then(values =>{
     res.render("templates/articulo",{layout:"publicaciones",data,index});
             db.collection(req.params.articulos).doc(req.params.articulo).update({
