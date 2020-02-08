@@ -7,7 +7,7 @@ sitemap.linksitemap = function(req,res){
       snapshot.forEach(doc=>{
         for(num in doc.data()){
           all.push({
-            url:"https"+'://'+req.get("host")+"/"+doc.data()[num].url,
+            url:"https"+'://'+req.get("host")+"/"+doc.data()[num].url+"/",
             lastmod:doc.data()[num].lastmod.toDate().toLocaleDateString(undefined),
           })
         }
