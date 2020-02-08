@@ -7,7 +7,7 @@ sitemap.linksitemap = function(req,res){
       snapshot.forEach(doc=>{
         for(num in doc.data()){
           all.push({
-            url:req.protocol+'://'+req.get("host")+"/"+doc.data()[num].url,
+            url:"https"+'://'+req.get("host")+"/"+doc.data()[num].url,
             lastmod:doc.data()[num].lastmod.toDate().toLocaleDateString(undefined),
           })
         }
@@ -30,7 +30,7 @@ sitemap.linksitemap = function(req,res){
             // const options = { timeZoneName:"short",hour:"numeric",minute:"2-digit"};
             for(num in contenedor){
                 content.push({
-                url:req.protocol+'://'+req.get("host")+"/"+contenedor[num].url,
+                url:"https"+'://'+req.get("host")+"/"+contenedor[num].url,
                 lastmod:contenedor[num].lastmod.toDate().toLocaleDateString(undefined),
                 imagenes:contenedor[num].imagen,
                 });
