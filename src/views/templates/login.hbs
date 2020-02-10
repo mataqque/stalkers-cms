@@ -2,16 +2,16 @@
     <div class="container">
         <div class="contenedor">
             <div class="contenedor_login">
-                <form  class="formulario" action="">
+                <form  class="formulario" action="/login" method="POST">
                     <h4 class="text-center text-light h1" style="font-family:fantasy">Login</h4>
                    <div class="contenedor_input d-flex flex-column">
-                       <span class="text-light">Usuario</span>
-                        <input type="text" placeholder="ingresa tu usuario">
+                       <span class="text-light">correo</span>
+                        <input type="text" placeholder="ingresa tu correo" name="email">
                         <i class="fas fa-user" aria-hidden="true"></i>
                    </div>
                    <div class="contenedor_input d-flex flex-column">
                         <span class="text-light">Contraseña</span>
-                        <input type="password" placeholder="ingresa tu contraseña">
+                        <input type="password" placeholder="ingresa tu contraseña" name="password">
                          <i class="fas fa-lock" aria-hidden="true"></i>
                    </div>
                    <div class="contenedor_input d-flex flex-column">

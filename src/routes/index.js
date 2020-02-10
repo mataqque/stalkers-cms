@@ -54,8 +54,6 @@ router.get("/",function(req,res,next){
       rutaprincipal("hacking","cate2",false,4),
       rutaprincipal("tutorials","cate3",false,6),
     ]).then(values =>{
-      // data.separado.push(data[articulos][0]);
-      // data[categoria].splice(0,1);
       res.render("templates/homepage",{layout:"homepage",data});
       db.collection("IPS-VISITAS-STALKER").doc(ip).set({ip:ip,date:new Date()});
     }).catch(err=>console.log(err))
@@ -69,6 +67,7 @@ router.get("/register",forwardAuthenticated,(req,res)=>{
     res.render("templates/register",{layout:"login"});
 })
 router.post("/login",(req,res,next)=>{
+  console.log(req.body)
     passport.authenticate("local",{
         successRedirect:"/dashboard",
         failureRedirect:"/login",
@@ -96,11 +95,6 @@ router.get("/politica-de-cookies",(req,res)=>{
 })
 router.get("/politica-de-privacidad",(req,res)=>{
   res.render("templates/privacidad",{layout:"politica-de-cookie"});
-});
-
-
-router.get("/dashboard",ensureAuthenticated,(req,res)=>{
-  res.render("templates/dashboard",{layout:"dashboard"})  
 });
 
 router.get("/dashboardpagina",(req,res)=>{

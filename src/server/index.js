@@ -12,31 +12,31 @@ const mongoose = require("mongoose");
 const flash = require("connect-flash");
 const multer = require("multer");
 const helmet = require("helmet")
+const database = require('../config/key.js').mongoURI;
 
+app.use(helmet());
+
+//INICIANDO MONGO DB 
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
 mongoose.set('useUnifiedTopology', true);
-require("../passport/local-auth")(passport);
 
+mongoose.connect(database,{ useNewUrlParser: true })
+  .then(() => console.log('MongoDB Connected'))
+  .catch(err => console.log(err));
+
+//ALMACENAR IMAGENES CON MULTER
 const storage = multer.diskStorage({
   destination:path.join(__dirname,"../public/img/uploads"),
   filename:function(req,file,cb,filename){
     cb(null,file.originalname)
   }
 });
-app.use(helmet());
 app.use(multer({storage:storage}).single("image"));
 
-app.listen(app.get("port"),()=>{
-    console.log(app.get("port"))
-});
 
-const database = require('../config/key.js').mongoURI;
-mongoose.connect(database,{ useNewUrlParser: true })
-  .then(() => console.log('MongoDB Connected'))
-  .catch(err => console.log(err));
-// settings
+// SETTINGS 
 app.use(flash());
 var expiryDate = new Date( Date.now() + 60 * 60 * 1000 );
 app.use(session({
@@ -51,8 +51,7 @@ app.use(session({
             expires: expiryDate
     }
 }));
-app.use(passport.initialize());
-app.use(passport.session());
+
 app.set("views",path.join(__dirname,"../views"));
 app.set('view engine', 'hbs');
 app.engine('hbs',exphbs({
@@ -63,15 +62,28 @@ app.engine('hbs',exphbs({
     helpers:require("./helpers")
     }));
  
-app.use(express.static(path.join(__dirname,"../public")));
-app.use(express.urlencoded({extended:true}));
 app.use(session({
     saveUninitialized:false,
     resave:false,
     secret:"Hola mundo"
 }));
 
-app.use("/dashboard",require("../routes/dashboard"));
+app.use(function(req, res, next) {
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
+  res.locals.error = req.flash('error');
+  next();
+});
+//ALL SETTINGS INICIAR LAS DESPUES DE LAS CONFIGURACIONES
+app.use(passport.initialize()); 
+app.use(passport.session());
+app.use(flash());
+app.use(express.static(path.join(__dirname,"../public")));
+app.use(express.urlencoded({extended:true}));
+
+// LLAMANDO RUTAS
+require("../passport/local-auth")(passport);
+app.use("/dashboard",require("../routes/dashboard")); // LLAMAR PRIMERO PARA EVITAR EL ERROR 404 
 app.use("/",require("../routes/index"));
 
 app.set("port",PORT);

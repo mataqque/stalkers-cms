@@ -1,10 +1,14 @@
 const express = require('express');
 const router = express.Router();
+const {ensureAuthenticated,forwardAuthenticated} = require("../passport/auth");
 
-router.get("/pagina",(req,res)=>{
+router.get("/",ensureAuthenticated,(req,res)=>{
+    res.render("templates/dashboard",{layout:"dashboard"})  
+  });
+router.get("/pagina",ensureAuthenticated,(req,res)=>{
     res.render("templates/dashboardpagina",{layout:"dashboard"});
 });
-router.get("/escritorio",(req,res)=>{
+router.get("/escritorio",ensureAuthenticated,(req,res)=>{
     res.render("templates/dashboardescritorio",{layout:"dashboard"});
 });
 
