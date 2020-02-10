@@ -65,6 +65,9 @@ router.get("/",function(req,res,next){
 router.get("/login",forwardAuthenticated,(req,res)=>{
     res.render("templates/login",{layout:"login"});
 })
+router.get("/register",forwardAuthenticated,(req,res)=>{
+    res.render("templates/register",{layout:"login"});
+})
 router.post("/login",(req,res,next)=>{
     passport.authenticate("local",{
         successRedirect:"/dashboard",

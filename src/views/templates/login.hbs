@@ -1,7 +1,42 @@
-<section class="contenedor-login"> 
-    <div class="formulario">
-        <form action="/login" method="POST">
-            <input type="text" placeholder="usuario">
-        </form>
+<section class="contenedor-login container"> 
+    <div class="container">
+        <div class="contenedor">
+            <div class="contenedor_login">
+                <form  class="formulario" action="">
+                    <h4 class="text-center text-light h1" style="font-family:fantasy">Login</h4>
+                   <div class="contenedor_input d-flex flex-column">
+                       <span class="text-light">Usuario</span>
+                        <input type="text" placeholder="ingresa tu usuario">
+                        <i class="fas fa-user" aria-hidden="true"></i>
+                   </div>
+                   <div class="contenedor_input d-flex flex-column">
+                        <span class="text-light">Contraseña</span>
+                        <input type="password" placeholder="ingresa tu contraseña">
+                         <i class="fas fa-lock" aria-hidden="true"></i>
+                   </div>
+                   <div class="contenedor_input d-flex flex-column">
+                        <button type="submit">ingresar</button>
+                   </div>
+                   <div class="contenedor_input d-flex flex-column">
+                        <span class="text-light align-self-center">O logeate con:</span>
+                        <div class="redes_sociales">
+                            <div>
+                                <a href="#"><i class="fab fa-facebook-f" ></i></a>
+                            </div>
+                            <div>
+                                    <a href="#"><i class="fab fa-google"></i></a>
+                            </div>
+                            <div>
+                                    <a href="#"><i class="fab fa-twitter"></i></a>
+                            </div>
+                           
+                        </div>
+                   </div>
+                     <div class="contenedor_input d-flex flex-column">
+                         <a href="/register" class="align-self-center">Registrarse</a>
+                     </div>
+                </form>
+            </div>
+        </div>
     </div>
 </section>
