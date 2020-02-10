@@ -10,6 +10,8 @@ const admin = require("firebase-admin");
 const gulp = require('gulp');
 const webp = require('gulp-webp');
 const fs = require("fs");
+const User = require('../models/User');
+const bcrypt = require("bcryptjs")
 var rutas;
 
 router.post("/rutas",function(req,res){
@@ -63,9 +65,7 @@ router.get("/",function(req,res,next){
 router.get("/login",forwardAuthenticated,(req,res)=>{
     res.render("templates/login",{layout:"login"});
 })
-router.get("/register",forwardAuthenticated,(req,res)=>{
-    res.render("templates/register",{layout:"login"});
-})
+
 router.post("/login",(req,res,next)=>{
   console.log(req.body)
     passport.authenticate("local",{
@@ -73,7 +73,77 @@ router.post("/login",(req,res,next)=>{
         failureRedirect:"/login",
         failureFlash: true
     })(req,res,next);
-})
+});
+
+router.get("/register",forwardAuthenticated,(req,res)=>{
+  res.render("templates/register",{layout:"login"});
+});
+
+router.post("/register",forwardAuthenticated,(req,res)=>{
+    const { name, email, password, password2 } = req.body;
+    let errors = [];
+  
+    if (!name || !email || !password || !password2) {
+      errors.push({ msg: 'Please enter all fields' });
+    }
+  
+    if (password != password2) {
+      errors.push({ msg: 'Passwords do not match' });
+    }
+  
+    if (password.length < 6) {
+      errors.push({ msg: 'Password must be at least 6 characters' });
+    }
+  
+    if (errors.length > 0) {
+        console.log(errors)
+      res.render('templates/register', {
+        errors,
+        name,
+        email,
+        password,
+        password2
+      ,layout:"login"});
+    } else {
+      User.findOne({ email: email }).then(user => {
+        if (user) {
+          errors.push({ msg: 'Email already exists' });
+          res.render('templates/register', {
+            errors,
+            name,
+            email,
+            password,
+            password2
+          ,layout:"login"});
+        } else {
+          const newUser = new User({
+            name,
+            email,
+            password
+          });
+  
+          bcrypt.genSalt(10, (err, salt) => {
+            bcrypt.hash(newUser.password, salt, (err, hash) => {
+              if (err) throw err;
+              newUser.password = hash;
+              newUser
+                .save()
+                .then(user => {
+                  req.flash(
+                    'success_msg',
+                    'You are now registered and can log in'
+                  );
+                  res.redirect('login');
+                })
+                .catch(err => console.log(err));
+            });
+          });
+        }
+      });
+    }
+
+});
+
 router.get("/tablero",(req,res)=>{
   // res.sendFile(path.join(__dirname,"../views/templates/tablero.html"))
   res.render("templates/tablero",{layout:"publicaciones"})
