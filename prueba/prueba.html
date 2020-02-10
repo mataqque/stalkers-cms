@@ -7,11 +7,51 @@
     <title>Document</title>
 </head>
 <body>
-    <script>
-   globalword = "habrete sesamo"
-    var re = new RegExp(window.location.origin,"g");
-    textpagina = globalword.replace(re,"")
-    console.log(textpagina)      
+    <div id="palabra"></div>
+    <button onclick="bajar()">bajar</button>
+    <button onclick="subir()">bajar</button>
+    <style>
+        @keyframes caida {
+        from{
+            top: 0px;
+            transform: rotate(0deg);
+        }
+        to{
+            transform: rotate(255deg) ;
+            top: 100px;
+            }
+        }
+     @keyframes subir {
+    from{
+        top:100px;
+        transform: rotate(255deg);
+    }
+    to{
+        top: 0px;
+        transform: rotate(0deg);
+    }
+}
+#palabra{position: relative;width: 200px;height: 20px;display: flex;}
+
+</style>
+<script>
+    let palabra = "escribe aqui la palabra";
+    var todo ="";
+    var time = 1
+    for(p in palabra){
+        todo+=`<span>${palabra[p]}</span>`
+    }
+    document.getElementById("palabra").innerHTML = todo
+    var all = [...document.querySelectorAll("#palabra>span")]
+    function bajar(){
+        all.forEach((e)=>{e.style=`position:relative;display:block;animation: ${time=time+0.1}s caida ease-in-out forwards;`;});
+        time=1
+    }
+    function subir(){
+        all.forEach((e)=>{e.style=`position:relative;display:block;animation: ${time=time+0.1}s subir ease-in-out forwards;`;});
+        time=1
+    }
+
 </script>
 </body>
 </html>

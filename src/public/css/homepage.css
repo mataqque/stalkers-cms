@@ -115,7 +115,7 @@ body{
 
 .content-categoria>li{
     height: 50px;width: 100%;
-    border: 2px solid #F8B500;
+    border: 2px solid  #666666;
     display: block;
     position: relative;
     margin: auto;
@@ -125,11 +125,12 @@ body{
     
 }
 .content-categoria>li:hover{
-   background: #363636;
+   background: #F8B500;
 }
 .content-categoria>li:hover > h5{
    color: white;
    text-shadow: 0px 0px 1px yellow;
+    font-weight: bold;
 }
 .content-categoria>li:hover > div{
     animation: flavio 0.6s 2;
@@ -143,8 +144,8 @@ body{
 .content-categoria>li>h5{
     text-align: center;
     padding: 7px;
-    color: #343A40;
-
+    color: #343A40;    
+    height: 100%;
 }
 .movement{
     position: absolute;
@@ -167,8 +168,9 @@ body{
     }
     .contenedor{
     display: grid;
-    grid-template-columns: 35% 35% 30%;
+    grid-template-columns: 33% 33% 34%;
     grid-template-rows: 50% 50% ;
+    height: 550px;
     }
     .item1:nth-child(1){
     grid-column-start: 1;
@@ -290,6 +292,20 @@ body{
         top:0;
         left: 40%;
     }
+    .navbar-nav{
+        height: auto!important;
+        display: flex;
+        align-items: center;
+    }
+    .navbar-nav>li{
+        display: block;
+        min-height: 50px;
+        padding: 3px;
+        width: 100%;
+    }
+    .redes>.nav-link{
+        width: 100%!important;
+    }
 }
 
 /* termina responsive */
@@ -381,3 +397,42 @@ body{
 
 /* footer */
 /*=-footer-=*/
+
+/* navbar */
+
+.redes{
+    height: 50px;
+}
+.navbar{position: sticky;top: 0;}
+.navbar{padding-top: 0;padding-bottom: 0;}
+.navbar-nav{
+    height: 50px;
+}
+
+.navbar-brand{padding: 0;}
+.navbar-brand>div{
+    height: 100%;
+    width: 100px;
+}
+.navbar-brand>div>img{
+    height: 50px;
+    width: 100%;
+    object-fit: cover;
+}
+.nav-link{   
+    height: 100%;
+    display: flex!important;
+    justify-content: center;
+    align-items: center;
+    color: gray;
+    font-size: 17px;
+}
+.nav-link:hover{
+    color: white;
+}
+.redes>a{width: 50px;}
+.redes>a:hover{color: white!important;}
+.facebook{background: blue;color: white;}
+.github{background: black;color: white;}
+.pinterest{background: #CB2027;color: white;}
+.login{background: white;width: 50px;}.login>i{color: black}
