@@ -279,16 +279,14 @@ router.get("/main-sitemap.xsl",(req,res)=>{
 router.get("/*sitemap*xml",sitemap.DinamicRouteSitemap);
 
 router.get("/:articulos/:articulo",(req,res,next)=>{
-  console.log(req.params.articulos)
     let data = {cate1:[],cate2:[],cate3:[]}
     let index
-    async function rutaprincipal (typecategoria,categoria,valor,cant){
+    async function Ruta_articulos(typecategoria,categoria,valor,cant){
         let collection  = await db.collection(req.params.articulos).where("url","==",req.params.articulo).limit(cant)
         .get().then(snapshot => {
             if (snapshot.empty) {
               console.log('No hay documentos articulos.');
-              next();
-              return;
+                return false;
             }else{snapshot.forEach(doc => {
                 let savedata = doc.data();
                 data[categoria].push({
@@ -314,8 +312,7 @@ router.get("/:articulos/:articulo",(req,res,next)=>{
     let collection  = await db.collection(typecategoria).where("views",">=",0).limit(cant).get().then(snapshot => {
        if (snapshot.empty){
            console.log('Documentos no encontrados.');
-           next();
-         return;
+           
        }else{
      snapshot.forEach(doc => {
        let savedata = doc.data();
@@ -338,14 +335,17 @@ router.get("/:articulos/:articulo",(req,res,next)=>{
      return collection;
 }
   Promise.all([
-    rutaprincipal(req.params.articulos,"cate1",false,1),
-    // ArticulosRelacionados("hacking","cate2",false,4),
-    // ArticulosRelacionados("tutoriales","cate3",false,4),
+    Ruta_articulos(req.params.articulos,"cate1",false,1),
   ]).then(values =>{
-    res.render("templates/articulo",{layout:"publicaciones",data,index});
+      console.log(values[0])
+    if(values[0] == false){
+        next();
+    }else if(values[0] == true){
+        res.render("templates/articulo",{layout:"publicaciones",data,index});
             db.collection(req.params.articulos).doc(req.params.articulo).update({
-              views:admin.firestore.FieldValue.increment(1)
-            })
+            views:admin.firestore.FieldValue.increment(1)
+        });
+    }
   }).catch(err=>console.log(err))
 });
 
